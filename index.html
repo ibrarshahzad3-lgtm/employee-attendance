@@ -1,1 +1,266 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#2563eb">
+
+<link rel="manifest"
+      href="./manifest.webmanifest">
+
+<title>Employee Attendance</title>
+
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 30px 22px;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.12);
+  text-align: center;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 15px;
+  border-radius: 18px;
+  background: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 26px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  min-height: 56px;
+  border: none;
+  border-radius: 12px;
+  margin: 8px 0;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.open {
+  background: #2563eb;
+}
+
+.install {
+  background: #111827;
+  display: none;
+}
+
+.info {
+  margin-top: 20px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<div class="logo">
+  🕘
+</div>
+
+
+<h1>
+  Employee Attendance
+</h1>
+
+
+<div class="subtitle">
+  Login & Logout System
+</div>
+
+
+<button
+  class="open"
+  onclick="openAttendance()">
+
+  🔐 OPEN ATTENDANCE
+
+</button>
+
+
+<button
+  id="installButton"
+  class="install"
+  onclick="installApp()">
+
+  📲 INSTALL APP
+
+</button>
+
+
+<div class="info">
+
+  Tap <b>Open Attendance</b> to access
+  the employee Login / Logout system.
+
+</div>
+
+
+<div class="footer">
+  Employee Attendance System
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================
+   YOUR GOOGLE APPS SCRIPT URL
+===================================== */
+
+const ATTENDANCE_URL =
+"https://script.google.com/macros/s/AKfycbzOxT-BLnQgDCAYfGeQQqPyLFgnVYFkBapszXYtMZbog7fF4ISZkm6NdDqf5ru5f7vN/exec";
+
+
+/* =====================================
+   OPEN ATTENDANCE SYSTEM
+===================================== */
+
+function openAttendance() {
+
+  window.location.href = ATTENDANCE_URL;
+
+}
+
+
+/* =====================================
+   PWA INSTALL
+===================================== */
+
+let deferredPrompt = null;
+
+
+window.addEventListener(
+  "beforeinstallprompt",
+  function(event) {
+
+    event.preventDefault();
+
+    deferredPrompt = event;
+
+    document
+      .getElementById("installButton")
+      .style.display = "block";
+
+  }
+);
+
+
+async function installApp() {
+
+  if (!deferredPrompt) {
+
+    alert(
+      "Chrome menu se 'Add to Home Screen' ya 'Install App' select karein."
+    );
+
+    return;
+  }
+
+
+  deferredPrompt.prompt();
+
+
+  const result =
+    await deferredPrompt.userChoice;
+
+
+  deferredPrompt = null;
+
+
+  document
+    .getElementById("installButton")
+    .style.display = "none";
+
+}
+
+
+/* =====================================
+   SERVICE WORKER
+===================================== */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener(
+    "load",
+    function() {
+
+      navigator.serviceWorker.register(
+        "./service-worker.js"
+      );
+
+    }
+  );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+```
