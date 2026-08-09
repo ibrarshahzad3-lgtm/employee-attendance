@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
 <meta name="theme-color"
-content="#2563eb">
+      content="#2563eb">
 
 <link rel="manifest"
-href="./manifest.webmanifest">
+      href="./manifest.webmanifest">
 
 <title>Employee Attendance</title>
 
@@ -279,7 +279,7 @@ let deferredPrompt = null;
 
 
 /* =====================================================
-   IPHONE / SAFARI API
+   JSONP API
 ===================================================== */
 
 function callAPI(params) {
@@ -287,116 +287,117 @@ function callAPI(params) {
   return new Promise(
     function(resolve, reject) {
 
-      const iframe =
-        document.createElement("iframe");
-
-      iframe.style.display = "none";
-
-      iframe.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-
-      let completed = false;
-
-
-      function cleanup() {
-
-        if (completed) {
-          return;
-        }
-
-        completed = true;
-
-
-        window.removeEventListener(
-          "message",
-          receiveMessage
+      const callbackName =
+        "attendanceCallback_" +
+        Date.now() +
+        "_" +
+        Math.floor(
+          Math.random() * 100000
         );
 
 
-        if (
-          iframe.parentNode
-        ) {
-
-          iframe.parentNode
-            .removeChild(iframe);
-
-        }
-
-        clearTimeout(timeout);
-      }
+      const script =
+        document.createElement(
+          "script"
+        );
 
 
-      function receiveMessage(event) {
-
-        if (
-          !event.data ||
-          event.data.type !==
-          "ATTENDANCE_RESPONSE"
-        ) {
-
-          return;
-        }
+      let finished = false;
 
 
-        cleanup();
+      const cleanup =
+        function() {
 
+          if (finished) {
+            return;
+          }
 
-        const response =
-          event.data.response;
+          finished = true;
 
+          if (
+            window[callbackName]
+          ) {
 
-        if (
-          response &&
-          response.success
-        ) {
+            delete window[
+              callbackName
+            ];
 
-          resolve(
-            response.data
+          }
+
+          if (
+            script.parentNode
+          ) {
+
+            script.parentNode
+              .removeChild(
+                script
+              );
+
+          }
+
+          clearTimeout(
+            timeout
           );
 
-        } else {
-
-          reject(
-            new Error(
-              response &&
-              response.error
-                ? response.error
-                : "Server error."
-            )
-          );
-
-        }
-      }
+        };
 
 
-      window.addEventListener(
-        "message",
-        receiveMessage
-      );
+      window[callbackName] =
+        function(response) {
+
+          cleanup();
+
+          if (
+            response &&
+            response.success
+          ) {
+
+            resolve(
+              response.data
+            );
+
+          } else {
+
+            reject(
+              new Error(
+                response &&
+                response.error
+                  ? response.error
+                  : "Server error."
+              )
+            );
+
+          }
+
+        };
 
 
       const query =
         new URLSearchParams();
 
 
-      Object.keys(params).forEach(
-        function(key) {
+      Object.keys(params)
+        .forEach(
+          function(key) {
 
-          query.set(
-            key,
-            params[key]
-          );
+            query.set(
+              key,
+              params[key]
+            );
 
-        }
-      );
+          }
+        );
 
 
       query.set(
         "api",
         "1"
+      );
+
+
+      query.set(
+        "callback",
+        callbackName
       );
 
 
@@ -407,15 +408,30 @@ function callAPI(params) {
       );
 
 
-      iframe.src =
+      script.src =
         API_URL +
         "?" +
         query.toString();
 
 
-      document.body.appendChild(
-        iframe
-      );
+      script.onerror =
+        function() {
+
+          cleanup();
+
+          reject(
+            new Error(
+              "Unable to connect to attendance server."
+            )
+          );
+
+        };
+
+
+      document.body
+        .appendChild(
+          script
+        );
 
 
       const timeout =
@@ -447,7 +463,9 @@ async function verifyEmployee() {
 
   const pin =
     document
-      .getElementById("pin")
+      .getElementById(
+        "pin"
+      )
       .value
       .trim();
 
@@ -484,9 +502,11 @@ async function verifyEmployee() {
     const result =
       await callAPI({
 
-        action: "verify",
+        action:
+          "verify",
 
-        pin: pin
+        pin:
+          pin
 
       });
 
@@ -555,6 +575,7 @@ async function verifyEmployee() {
     button.disabled = false;
 
   }
+
 }
 
 
@@ -562,7 +583,9 @@ async function verifyEmployee() {
    LOGIN / LOGOUT
 ===================================================== */
 
-async function markAttendance(action) {
+async function markAttendance(
+  action
+) {
 
   if (
     !verified ||
@@ -570,6 +593,7 @@ async function markAttendance(action) {
   ) {
 
     return;
+
   }
 
 
@@ -652,6 +676,7 @@ async function markAttendance(action) {
     button.disabled = false;
 
   }
+
 }
 
 
@@ -659,13 +684,14 @@ async function markAttendance(action) {
    STATUS
 ===================================================== */
 
-function updateStatus(status) {
+function updateStatus(
+  status
+) {
 
   const box =
-    document
-      .getElementById(
-        "currentStatus"
-      );
+    document.getElementById(
+      "currentStatus"
+    );
 
 
   if (
@@ -687,6 +713,7 @@ function updateStatus(status) {
       "🔴 Current Status: LOGOUT";
 
   }
+
 }
 
 
@@ -752,6 +779,7 @@ function exitUser() {
     "",
     "#333"
   );
+
 }
 
 
@@ -765,17 +793,16 @@ function showMessage(
 ) {
 
   const message =
-    document
-      .getElementById(
-        "message"
-      );
-
+    document.getElementById(
+      "message"
+    );
 
   message.style.color =
     color;
 
   message.textContent =
     text;
+
 }
 
 
@@ -836,7 +863,9 @@ document
 
 
 document
-  .getElementById("pin")
+  .getElementById(
+    "pin"
+  )
   .addEventListener(
     "keydown",
     function(event) {
@@ -916,12 +945,6 @@ document
 
     }
   );
-
-
-/*
-   Service worker intentionally disabled
-   during iPhone testing.
-*/
 
 </script>
 
