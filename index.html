@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,82 +24,156 @@
 }
 
 body {
-  margin: 0;
-  padding: 20px;
+
   font-family: Arial, sans-serif;
+
   background: #f3f4f6;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px 15px;
+
+  margin: 0;
+
 }
 
 .box {
-  width: 100%;
-  max-width: 420px;
-  background: white;
-  padding: 30px 22px;
-  border-radius: 22px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.12);
-  text-align: center;
-}
 
-.logo {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 15px;
+  max-width: 420px;
+
+  margin: auto;
+
+  background: white;
+
+  padding: 30px 20px;
+
   border-radius: 18px;
-  background: #2563eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,.1);
+
 }
 
 h1 {
-  margin: 0 0 8px;
-  color: #111827;
-  font-size: 26px;
+
+  margin-bottom: 25px;
+
 }
 
-.subtitle {
-  color: #6b7280;
-  margin-bottom: 25px;
-  font-size: 14px;
+input {
+
+  width: 100%;
+
+  padding: 15px;
+
+  font-size: 20px;
+
+  border-radius: 10px;
+
+  border: 1px solid #ccc;
+
+  margin-bottom: 15px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  letter-spacing: 5px;
+
 }
 
 button {
+
   width: 100%;
-  min-height: 56px;
-  border: none;
-  border-radius: 12px;
+
+  padding: 17px;
+
   margin: 8px 0;
+
+  border: none;
+
+  border-radius: 10px;
+
   color: white;
+
   font-size: 18px;
+
   font-weight: bold;
+
   cursor: pointer;
+
 }
 
-.open {
+.verify {
+
   background: #2563eb;
+
+}
+
+.login {
+
+  background: #16a34a;
+
+}
+
+.logout {
+
+  background: #dc2626;
+
+}
+
+.exit {
+
+  background: #6b7280;
+
 }
 
 .install {
+
   background: #111827;
+
+}
+
+.hidden {
+
   display: none;
+
 }
 
-.info {
+#employeeName {
+
+  font-size: 22px;
+
+  font-weight: bold;
+
+  margin: 15px 0 5px;
+
+}
+
+#weeklyOff {
+
+  color: #666;
+
+  margin-bottom: 15px;
+
+}
+
+#currentStatus {
+
+  margin: 15px 0;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+}
+
+#message {
+
   margin-top: 20px;
-  color: #6b7280;
-  font-size: 14px;
-  line-height: 1.5;
-}
 
-.footer {
-  margin-top: 25px;
-  font-size: 12px;
-  color: #9ca3af;
+  font-weight: bold;
+
 }
 
 </style>
@@ -114,51 +187,96 @@ button {
 <div class="box">
 
 
-<div class="logo">
-  🕘
-</div>
-
-
 <h1>
   Employee Attendance
 </h1>
 
 
-<div class="subtitle">
-  Login & Logout System
-</div>
+<!-- PIN -->
+
+<div id="loginSection">
+
+
+<input
+  type="password"
+  id="pin"
+  placeholder="Enter PIN"
+  inputmode="numeric"
+  maxlength="6"
+  autocomplete="off">
 
 
 <button
-  class="open"
-  onclick="openAttendance()">
+  class="verify"
+  onclick="verifyEmployee()">
 
-  🔐 OPEN ATTENDANCE
+🔐 VERIFY PIN
 
 </button>
 
 
 <button
   id="installButton"
-  class="install"
+  class="install hidden"
   onclick="installApp()">
 
-  📲 INSTALL APP
+📲 INSTALL APP
 
 </button>
 
 
-<div class="info">
+</div>
 
-  Tap <b>Open Attendance</b> to access
-  the employee Login / Logout system.
+
+<!-- EMPLOYEE -->
+
+<div
+  id="employeeSection"
+  class="hidden">
+
+
+<div id="employeeName"></div>
+
+
+<div id="weeklyOff"></div>
+
+
+<div id="currentStatus">
+Current Status
+</div>
+
+
+<button
+  class="login"
+  onclick="markAttendance('Login')">
+
+🟢 LOGIN
+
+</button>
+
+
+<button
+  class="logout"
+  onclick="markAttendance('Logout')">
+
+🔴 LOGOUT
+
+</button>
+
+
+<button
+  class="exit"
+  onclick="exitUser()">
+
+🔒 EXIT
+
+</button>
+
 
 </div>
 
 
-<div class="footer">
-  Employee Attendance System
-</div>
+<div id="message"></div>
 
 
 </div>
@@ -168,20 +286,403 @@ button {
 
 
 /* =====================================
-   YOUR GOOGLE APPS SCRIPT URL
+   APPS SCRIPT URL
 ===================================== */
 
-const ATTENDANCE_URL =
+const API_URL =
 "https://script.google.com/macros/s/AKfycbzOxT-BLnQgDCAYfGeQQqPyLFgnVYFkBapszXYtMZbog7fF4ISZkm6NdDqf5ru5f7vN/exec";
 
 
+/*
+If your NEW deployment gives you
+a different URL, replace the URL above.
+*/
+
+
+let verified = false;
+
+let deferredPrompt = null;
+
+
 /* =====================================
-   OPEN ATTENDANCE SYSTEM
+   JSONP API
 ===================================== */
 
-function openAttendance() {
+function callAPI(params) {
 
-  window.location.href = ATTENDANCE_URL;
+  return new Promise(function(resolve, reject) {
+
+    const callbackName =
+      "apiCallback_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random() * 10000);
+
+
+    const script =
+      document.createElement("script");
+
+
+    const query =
+      new URLSearchParams(params);
+
+
+    query.set(
+      "api",
+      "1"
+    );
+
+
+    query.set(
+      "callback",
+      callbackName
+    );
+
+
+    script.src =
+      API_URL +
+      "?" +
+      query.toString();
+
+
+    window[callbackName] =
+      function(response) {
+
+        delete window[callbackName];
+
+        script.remove();
+
+        if (response.success) {
+
+          resolve(response.data);
+
+        } else {
+
+          reject(
+            new Error(
+              response.error ||
+              "Something went wrong."
+            )
+          );
+
+        }
+
+      };
+
+
+    script.onerror =
+      function() {
+
+        delete window[callbackName];
+
+        script.remove();
+
+        reject(
+          new Error(
+            "Unable to connect to attendance server."
+          )
+        );
+
+      };
+
+
+    document.body.appendChild(script);
+
+  });
+
+}
+
+
+/* =====================================
+   VERIFY
+===================================== */
+
+async function verifyEmployee() {
+
+  const pin =
+    document
+      .getElementById("pin")
+      .value
+      .trim();
+
+
+  if (!pin) {
+
+    showMessage(
+      "Please enter your PIN.",
+      "red"
+    );
+
+    return;
+
+  }
+
+
+  showMessage(
+    "Verifying...",
+    "#333"
+  );
+
+
+  try {
+
+    const result =
+      await callAPI({
+
+        action: "verify",
+
+        pin: pin
+
+      });
+
+
+    verified = true;
+
+
+    document
+      .getElementById("loginSection")
+      .classList.add("hidden");
+
+
+    document
+      .getElementById("employeeSection")
+      .classList.remove("hidden");
+
+
+    document
+      .getElementById("employeeName")
+      .textContent =
+      "👤 " + result.name;
+
+
+    document
+      .getElementById("weeklyOff")
+      .textContent =
+      "Weekly Off: " +
+      result.weeklyOff;
+
+
+    updateStatus(
+      result.status
+    );
+
+
+    showMessage(
+      "✓ Verified successfully.",
+      "green"
+    );
+
+
+  } catch (error) {
+
+    showMessage(
+      error.message,
+      "red"
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   LOGIN / LOGOUT
+===================================== */
+
+async function markAttendance(action) {
+
+  if (!verified) {
+    return;
+  }
+
+
+  const pin =
+    document
+      .getElementById("pin")
+      .value
+      .trim();
+
+
+  showMessage(
+    "Saving...",
+    "#333"
+  );
+
+
+  try {
+
+    const result =
+      await callAPI({
+
+        action: "attendance",
+
+        pin: pin,
+
+        attendanceAction: action
+
+      });
+
+
+    if (action === "Login") {
+
+      showMessage(
+        "✓ " +
+        result.name +
+        " is Logged In",
+        "green"
+      );
+
+
+      updateStatus(
+        "Login"
+      );
+
+
+    } else {
+
+      showMessage(
+        "✓ " +
+        result.name +
+        " is Logged Out",
+        "green"
+      );
+
+
+      updateStatus(
+        "Logout"
+      );
+
+    }
+
+
+  } catch (error) {
+
+    showMessage(
+      error.message,
+      "red"
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+function updateStatus(status) {
+
+  const box =
+    document
+      .getElementById(
+        "currentStatus"
+      );
+
+
+  if (status === "Login") {
+
+    box.style.color =
+      "#16a34a";
+
+    box.textContent =
+      "🟢 Current Status: LOGIN";
+
+  } else {
+
+    box.style.color =
+      "#dc2626";
+
+    box.textContent =
+      "🔴 Current Status: LOGOUT";
+
+  }
+
+}
+
+
+/* =====================================
+   EXIT
+===================================== */
+
+function exitUser() {
+
+  verified = false;
+
+
+  document
+    .getElementById(
+      "employeeSection"
+    )
+    .classList.add("hidden");
+
+
+  document
+    .getElementById(
+      "loginSection"
+    )
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById(
+      "pin"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "employeeName"
+    )
+    .textContent = "";
+
+
+  document
+    .getElementById(
+      "weeklyOff"
+    )
+    .textContent = "";
+
+
+  document
+    .getElementById(
+      "currentStatus"
+    )
+    .textContent =
+    "Current Status";
+
+
+  document
+    .getElementById(
+      "message"
+    )
+    .textContent = "";
+
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(
+  text,
+  color
+) {
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+
+  message.style.color =
+    color;
+
+
+  message.textContent =
+    text;
 
 }
 
@@ -190,20 +691,23 @@ function openAttendance() {
    PWA INSTALL
 ===================================== */
 
-let deferredPrompt = null;
-
-
 window.addEventListener(
   "beforeinstallprompt",
   function(event) {
 
     event.preventDefault();
 
-    deferredPrompt = event;
+    deferredPrompt =
+      event;
+
 
     document
-      .getElementById("installButton")
-      .style.display = "block";
+      .getElementById(
+        "installButton"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
   }
 );
@@ -214,26 +718,30 @@ async function installApp() {
   if (!deferredPrompt) {
 
     alert(
-      "Chrome menu se 'Add to Home Screen' ya 'Install App' select karein."
+      "Chrome menu → Install App / Add to Home Screen"
     );
 
     return;
+
   }
 
 
   deferredPrompt.prompt();
 
 
-  const result =
-    await deferredPrompt.userChoice;
+  await deferredPrompt.userChoice;
 
 
   deferredPrompt = null;
 
 
   document
-    .getElementById("installButton")
-    .style.display = "none";
+    .getElementById(
+      "installButton"
+    )
+    .classList.add(
+      "hidden"
+    );
 
 }
 
@@ -242,15 +750,20 @@ async function installApp() {
    SERVICE WORKER
 ===================================== */
 
-if ("serviceWorker" in navigator) {
+if (
+  "serviceWorker"
+  in navigator
+) {
 
   window.addEventListener(
     "load",
     function() {
 
-      navigator.serviceWorker.register(
-        "./service-worker.js"
-      );
+      navigator
+        .serviceWorker
+        .register(
+          "./service-worker.js"
+        );
 
     }
   );
@@ -263,4 +776,3 @@ if ("serviceWorker" in navigator) {
 </body>
 
 </html>
-```
