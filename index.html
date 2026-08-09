@@ -6,15 +6,16 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
 <meta name="theme-color"
-      content="#2563eb">
+content="#2563eb">
 
 <link rel="manifest"
-      href="./manifest.webmanifest">
+href="./manifest.webmanifest">
 
 <title>Employee Attendance</title>
 
@@ -37,7 +38,6 @@ body {
   margin: 0;
 
   -webkit-text-size-adjust: 100%;
-
 }
 
 .box {
@@ -54,13 +54,10 @@ body {
 
   box-shadow:
     0 4px 15px rgba(0,0,0,.1);
-
 }
 
 h1 {
-
   margin-bottom: 25px;
-
 }
 
 input {
@@ -82,7 +79,6 @@ input {
   letter-spacing: 5px;
 
   -webkit-appearance: none;
-
 }
 
 button {
@@ -108,49 +104,30 @@ button {
   -webkit-appearance: none;
 
   touch-action: manipulation;
-
-}
-
-button:active {
-
-  transform: scale(.98);
-
 }
 
 .verify {
-
   background: #2563eb;
-
 }
 
 .login {
-
   background: #16a34a;
-
 }
 
 .logout {
-
   background: #dc2626;
-
 }
 
 .exit {
-
   background: #6b7280;
-
 }
 
 .install {
-
   background: #111827;
-
 }
 
 .hidden {
-
   display: none !important;
-
 }
 
 #employeeName {
@@ -160,7 +137,6 @@ button:active {
   font-weight: bold;
 
   margin: 15px 0 5px;
-
 }
 
 #weeklyOff {
@@ -168,7 +144,6 @@ button:active {
   color: #666;
 
   margin-bottom: 15px;
-
 }
 
 #currentStatus {
@@ -178,7 +153,6 @@ button:active {
   font-size: 18px;
 
   font-weight: bold;
-
 }
 
 #message {
@@ -188,7 +162,6 @@ button:active {
   font-weight: bold;
 
   min-height: 24px;
-
 }
 
 </style>
@@ -201,27 +174,25 @@ button:active {
 <div class="box">
 
 <h1>
-  Employee Attendance
+Employee Attendance
 </h1>
 
-
-<!-- PIN -->
 
 <div id="loginSection">
 
 <input
-  type="password"
-  id="pin"
-  placeholder="Enter PIN"
-  inputmode="numeric"
-  pattern="[0-9]*"
-  maxlength="6"
-  autocomplete="off">
+type="password"
+id="pin"
+placeholder="Enter PIN"
+inputmode="numeric"
+pattern="[0-9]*"
+maxlength="6"
+autocomplete="off">
 
 <button
-  type="button"
-  class="verify"
-  id="verifyButton">
+type="button"
+class="verify"
+id="verifyButton">
 
 🔐 VERIFY PIN
 
@@ -229,9 +200,9 @@ button:active {
 
 
 <button
-  type="button"
-  id="installButton"
-  class="install hidden">
+type="button"
+id="installButton"
+class="install hidden">
 
 📲 INSTALL APP
 
@@ -240,11 +211,9 @@ button:active {
 </div>
 
 
-<!-- EMPLOYEE -->
-
 <div
-  id="employeeSection"
-  class="hidden">
+id="employeeSection"
+class="hidden">
 
 <div id="employeeName"></div>
 
@@ -256,9 +225,9 @@ Current Status
 
 
 <button
-  type="button"
-  class="login"
-  id="loginButton">
+type="button"
+class="login"
+id="loginButton">
 
 🟢 LOGIN
 
@@ -266,9 +235,9 @@ Current Status
 
 
 <button
-  type="button"
-  class="logout"
-  id="logoutButton">
+type="button"
+class="logout"
+id="logoutButton">
 
 🔴 LOGOUT
 
@@ -276,9 +245,9 @@ Current Status
 
 
 <button
-  type="button"
-  class="exit"
-  id="exitButton">
+type="button"
+class="exit"
+id="exitButton">
 
 🔒 EXIT
 
@@ -295,16 +264,12 @@ Current Status
 <script>
 
 /* =====================================================
-   GOOGLE APPS SCRIPT URL
+   API URL
 ===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbz04PnAKUm_ozjmvsyFnDlV9BW5pIenR6slTzBmNA7wTpA4TC3SLlSSap6yhysMvFPm/exec";
 
-
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 let verified = false;
 
@@ -314,55 +279,73 @@ let deferredPrompt = null;
 
 
 /* =====================================================
-   SAFARI-FRIENDLY JSONP API
+   IPHONE / SAFARI API
 ===================================================== */
 
 function callAPI(params) {
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(
+    function(resolve, reject) {
 
-    const callbackName =
-      "attendanceCallback" +
-      Date.now() +
-      Math.floor(
-        Math.random() * 100000
+      const iframe =
+        document.createElement("iframe");
+
+      iframe.style.display = "none";
+
+      iframe.setAttribute(
+        "aria-hidden",
+        "true"
       );
 
 
-    let finished = false;
+      let completed = false;
 
 
-    const script =
-      document.createElement("script");
+      function cleanup() {
+
+        if (completed) {
+          return;
+        }
+
+        completed = true;
 
 
-    function cleanup() {
+        window.removeEventListener(
+          "message",
+          receiveMessage
+        );
 
-      if (finished) {
-        return;
+
+        if (
+          iframe.parentNode
+        ) {
+
+          iframe.parentNode
+            .removeChild(iframe);
+
+        }
+
+        clearTimeout(timeout);
       }
 
-      finished = true;
 
-      clearTimeout(timeout);
+      function receiveMessage(event) {
 
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
+        if (
+          !event.data ||
+          event.data.type !==
+          "ATTENDANCE_RESPONSE"
+        ) {
 
-      try {
-        delete window[callbackName];
-      } catch (e) {
-        window[callbackName] = undefined;
-      }
+          return;
+        }
 
-    }
-
-
-    window[callbackName] =
-      function(response) {
 
         cleanup();
+
+
+        const response =
+          event.data.response;
 
 
         if (
@@ -370,7 +353,9 @@ function callAPI(params) {
           response.success
         ) {
 
-          resolve(response.data);
+          resolve(
+            response.data
+          );
 
         } else {
 
@@ -384,81 +369,58 @@ function callAPI(params) {
           );
 
         }
-
-      };
-
-
-    script.onerror =
-      function() {
-
-        cleanup();
-
-        reject(
-          new Error(
-            "Unable to connect to attendance server."
-          )
-        );
-
-      };
-
-
-    const query =
-      new URLSearchParams();
-
-
-    Object.keys(params).forEach(
-      function(key) {
-
-        query.set(
-          key,
-          params[key]
-        );
-
       }
-    );
 
 
-    query.set(
-      "api",
-      "1"
-    );
+      window.addEventListener(
+        "message",
+        receiveMessage
+      );
 
 
-    query.set(
-      "callback",
-      callbackName
-    );
+      const query =
+        new URLSearchParams();
 
 
-    /* Prevent Safari/cache from reusing old request */
+      Object.keys(params).forEach(
+        function(key) {
 
-    query.set(
-      "_",
-      Date.now().toString()
-    );
+          query.set(
+            key,
+            params[key]
+          );
 
-
-    script.src =
-      API_URL +
-      "?" +
-      query.toString();
+        }
+      );
 
 
-    script.async = true;
+      query.set(
+        "api",
+        "1"
+      );
 
 
-    document
-      .head
-      .appendChild(script);
+      query.set(
+        "_",
+        Date.now()
+          .toString()
+      );
 
 
-    /* 20 second timeout */
+      iframe.src =
+        API_URL +
+        "?" +
+        query.toString();
 
-    const timeout =
-      setTimeout(
-        function() {
 
-          if (!finished) {
+      document.body.appendChild(
+        iframe
+      );
+
+
+      const timeout =
+        setTimeout(
+          function() {
 
             cleanup();
 
@@ -468,14 +430,12 @@ function callAPI(params) {
               )
             );
 
-          }
+          },
+          20000
+        );
 
-        },
-        20000
-      );
-
-  });
-
+    }
+  );
 }
 
 
@@ -485,12 +445,11 @@ function callAPI(params) {
 
 async function verifyEmployee() {
 
-  const pinInput =
-    document.getElementById("pin");
-
-
   const pin =
-    pinInput.value.trim();
+    document
+      .getElementById("pin")
+      .value
+      .trim();
 
 
   if (!pin) {
@@ -500,10 +459,7 @@ async function verifyEmployee() {
       "red"
     );
 
-    pinInput.focus();
-
     return;
-
   }
 
 
@@ -514,14 +470,13 @@ async function verifyEmployee() {
 
 
   const button =
-    document.getElementById(
-      "verifyButton"
-    );
+    document
+      .getElementById(
+        "verifyButton"
+      );
 
 
   button.disabled = true;
-
-  button.style.opacity = "0.6";
 
 
   try {
@@ -564,7 +519,8 @@ async function verifyEmployee() {
         "employeeName"
       )
       .textContent =
-      "👤 " + result.name;
+      "👤 " +
+      result.name;
 
 
     document
@@ -598,10 +554,7 @@ async function verifyEmployee() {
 
     button.disabled = false;
 
-    button.style.opacity = "1";
-
   }
-
 }
 
 
@@ -611,7 +564,11 @@ async function verifyEmployee() {
 
 async function markAttendance(action) {
 
-  if (!verified || !verifiedPIN) {
+  if (
+    !verified ||
+    !verifiedPIN
+  ) {
+
     return;
   }
 
@@ -624,13 +581,15 @@ async function markAttendance(action) {
 
   const button =
     action === "Login"
-      ? document.getElementById("loginButton")
-      : document.getElementById("logoutButton");
+      ? document.getElementById(
+          "loginButton"
+        )
+      : document.getElementById(
+          "logoutButton"
+        );
 
 
   button.disabled = true;
-
-  button.style.opacity = "0.6";
 
 
   try {
@@ -638,16 +597,21 @@ async function markAttendance(action) {
     const result =
       await callAPI({
 
-        action: "attendance",
+        action:
+          "attendance",
 
-        pin: verifiedPIN,
+        pin:
+          verifiedPIN,
 
-        attendanceAction: action
+        attendanceAction:
+          action
 
       });
 
 
-    if (action === "Login") {
+    if (
+      action === "Login"
+    ) {
 
       showMessage(
         "✓ " +
@@ -656,7 +620,9 @@ async function markAttendance(action) {
         "green"
       );
 
-      updateStatus("Login");
+      updateStatus(
+        "Login"
+      );
 
     } else {
 
@@ -667,7 +633,9 @@ async function markAttendance(action) {
         "green"
       );
 
-      updateStatus("Logout");
+      updateStatus(
+        "Logout"
+      );
 
     }
 
@@ -683,10 +651,7 @@ async function markAttendance(action) {
 
     button.disabled = false;
 
-    button.style.opacity = "1";
-
   }
-
 }
 
 
@@ -697,12 +662,15 @@ async function markAttendance(action) {
 function updateStatus(status) {
 
   const box =
-    document.getElementById(
-      "currentStatus"
-    );
+    document
+      .getElementById(
+        "currentStatus"
+      );
 
 
-  if (status === "Login") {
+  if (
+    status === "Login"
+  ) {
 
     box.style.color =
       "#16a34a";
@@ -719,7 +687,6 @@ function updateStatus(status) {
       "🔴 Current Status: LOGOUT";
 
   }
-
 }
 
 
@@ -785,7 +752,6 @@ function exitUser() {
     "",
     "#333"
   );
-
 }
 
 
@@ -799,23 +765,22 @@ function showMessage(
 ) {
 
   const message =
-    document.getElementById(
-      "message"
-    );
+    document
+      .getElementById(
+        "message"
+      );
 
 
   message.style.color =
     color;
 
-
   message.textContent =
     text;
-
 }
 
 
 /* =====================================================
-   BUTTON EVENTS
+   BUTTONS
 ===================================================== */
 
 document
@@ -836,7 +801,9 @@ document
     "click",
     function() {
 
-      markAttendance("Login");
+      markAttendance(
+        "Login"
+      );
 
     }
   );
@@ -850,7 +817,9 @@ document
     "click",
     function() {
 
-      markAttendance("Logout");
+      markAttendance(
+        "Logout"
+      );
 
     }
   );
@@ -866,15 +835,15 @@ document
   );
 
 
-/* Allow Enter key on PIN */
-
 document
   .getElementById("pin")
   .addEventListener(
     "keydown",
     function(event) {
 
-      if (event.key === "Enter") {
+      if (
+        event.key === "Enter"
+      ) {
 
         event.preventDefault();
 
@@ -899,7 +868,6 @@ window.addEventListener(
     deferredPrompt =
       event;
 
-
     document
       .getElementById(
         "installButton"
@@ -920,25 +888,23 @@ document
     "click",
     async function() {
 
-      if (!deferredPrompt) {
+      if (
+        !deferredPrompt
+      ) {
 
         alert(
-          "On iPhone use Safari → Share → Add to Home Screen."
+          "On iPhone: Safari → Share → Add to Home Screen."
         );
 
         return;
-
       }
 
 
       deferredPrompt.prompt();
 
-
       await deferredPrompt.userChoice;
 
-
       deferredPrompt = null;
-
 
       document
         .getElementById(
@@ -952,19 +918,9 @@ document
   );
 
 
-/* =====================================================
-   SERVICE WORKER
-===================================================== */
-
 /*
-   Temporarily disabled while testing the
-   iPhone connection.
-
-   This prevents an old cached version of
-   index.html from being loaded on iPhone.
-
-   After everything works, we can enable PWA
-   caching again safely.
+   Service worker intentionally disabled
+   during iPhone testing.
 */
 
 </script>
