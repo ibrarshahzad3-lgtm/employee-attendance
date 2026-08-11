@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,19 +7,14 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0, user-scalable=no">
 
-<meta name="theme-color"
-      content="#2563eb">
+<meta name="theme-color" content="#2563eb">
 
-<link rel="manifest"
-      href="./manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
 
 <title>Employee Attendance</title>
-
 
 <style>
 
@@ -27,278 +23,124 @@
 }
 
 body {
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  background:
-    #f3f4f6;
-
-  text-align:
-    center;
-
-  padding:
-    30px 15px;
-
-  margin:
-    0;
-
-  -webkit-text-size-adjust:
-    100%;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  text-align: center;
+  padding: 30px 15px;
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
 }
-
 
 .box {
-
-  max-width:
-    420px;
-
-  margin:
-    auto;
-
-  background:
-    white;
-
-  padding:
-    30px 20px;
-
-  border-radius:
-    18px;
-
-  box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.1);
-
+  max-width: 420px;
+  margin: auto;
+  background: white;
+  padding: 30px 20px;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
 }
-
 
 h1 {
-
-  margin-bottom:
-    25px;
-
+  margin-bottom: 25px;
 }
-
 
 input {
-
-  width:
-    100%;
-
-  padding:
-    15px;
-
-  font-size:
-    20px;
-
-  border-radius:
-    10px;
-
-  border:
-    1px solid #ccc;
-
-  margin-bottom:
-    15px;
-
-  text-align:
-    center;
-
-  letter-spacing:
-    5px;
-
-  -webkit-appearance:
-    none;
-
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  text-align: center;
+  letter-spacing: 5px;
+  -webkit-appearance: none;
 }
-
 
 button {
-
-  width:
-    100%;
-
-  padding:
-    17px;
-
-  margin:
-    8px 0;
-
-  border:
-    none;
-
-  border-radius:
-    10px;
-
-  color:
-    white;
-
-  font-size:
-    18px;
-
-  font-weight:
-    bold;
-
-  cursor:
-    pointer;
-
-  -webkit-appearance:
-    none;
-
-  touch-action:
-    manipulation;
-
+  width: 100%;
+  padding: 17px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-appearance: none;
+  touch-action: manipulation;
 }
-
 
 button:disabled {
-
-  opacity:
-    .6;
-
-  cursor:
-    not-allowed;
-
+  opacity: .6;
+  cursor: not-allowed;
 }
-
 
 .verify {
-
-  background:
-    #2563eb;
-
+  background: #2563eb;
 }
-
 
 .login {
-
-  background:
-    #16a34a;
-
+  background: #16a34a;
 }
-
 
 .logout {
-
-  background:
-    #dc2626;
-
+  background: #dc2626;
 }
-
 
 .exit {
-
-  background:
-    #6b7280;
-
+  background: #6b7280;
 }
-
 
 .install {
-
-  background:
-    #111827;
-
+  background: #111827;
 }
-
 
 .hidden {
-
-  display:
-    none !important;
-
+  display: none !important;
 }
-
 
 #employeeName {
-
-  font-size:
-    22px;
-
-  font-weight:
-    bold;
-
-  margin:
-    15px 0 5px;
-
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0 5px;
 }
-
 
 #weeklyOff {
-
-  color:
-    #666;
-
-  margin-bottom:
-    15px;
-
+  color: #666;
+  margin-bottom: 15px;
 }
-
 
 #currentStatus {
-
-  margin:
-    15px 0;
-
-  font-size:
-    18px;
-
-  font-weight:
-    bold;
-
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
 }
-
 
 #locationStatus {
-
-  margin:
-    10px 0;
-
-  font-size:
-    16px;
-
-  font-weight:
-    bold;
-
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
 }
-
 
 #message {
-
-  margin-top:
-    20px;
-
-  font-weight:
-    bold;
-
-  min-height:
-    24px;
-
+  margin-top: 20px;
+  font-weight: bold;
+  min-height: 24px;
 }
-
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <div class="box">
 
+<h1>Employee Attendance</h1>
 
-<h1>
-Employee Attendance
-</h1>
-
-
-<!-- =================================================
-     LOGIN SECTION
-================================================= -->
+<!-- LOGIN SECTION -->
 
 <div id="loginSection">
-
 
 <input
   type="password"
@@ -309,7 +151,6 @@ Employee Attendance
   maxlength="6"
   autocomplete="off">
 
-
 <button
   type="button"
   class="verify"
@@ -318,7 +159,6 @@ Employee Attendance
 🔐 VERIFY PIN
 
 </button>
-
 
 <button
   type="button"
@@ -329,34 +169,24 @@ Employee Attendance
 
 </button>
 
-
 </div>
 
 
-<!-- =================================================
-     EMPLOYEE SECTION
-================================================= -->
+<!-- EMPLOYEE SECTION -->
 
-<div
-  id="employeeSection"
-  class="hidden">
-
+<div id="employeeSection" class="hidden">
 
 <div id="employeeName"></div>
 
-
 <div id="weeklyOff"></div>
-
 
 <div id="currentStatus">
 Current Status
 </div>
 
-
 <div id="locationStatus">
 📍 Location: Not Checked
 </div>
-
 
 <button
   type="button"
@@ -367,7 +197,6 @@ Current Status
 
 </button>
 
-
 <button
   type="button"
   class="logout"
@@ -376,7 +205,6 @@ Current Status
 🔴 LOGOUT
 
 </button>
-
 
 <button
   type="button"
@@ -387,254 +215,172 @@ Current Status
 
 </button>
 
-
 </div>
 
-
 <div id="message"></div>
-
 
 </div>
 
 
 <script>
 
-
-// =====================================================
-// API URL
-// =====================================================
+/* =====================================================
+   API URL
+===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbyovrW3E9ZnEf_-qc95maAtL2EDPKCoIBpd986bpBR74pb-NKucz0wxOaTPljHhF3sX/exec";
 
 
-let verified =
-  false;
+let verified = false;
+let verifiedPIN = "";
+let deferredPrompt = null;
 
 
-let verifiedPIN =
-  "";
+/* =====================================================
+   JSONP API
+===================================================== */
 
+function callAPI(params) {
 
-let deferredPrompt =
-  null;
+  return new Promise(function(resolve, reject) {
 
+    const callbackName =
+      "attendanceCallback_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random() * 100000);
 
-// =====================================================
-// JSONP API
-// =====================================================
+    const script =
+      document.createElement("script");
 
-function callAPI(
-  params
-) {
+    let finished = false;
 
-  return new Promise(
-    function(
-      resolve,
-      reject
-    ) {
+    let timeout;
 
-      const callbackName =
-        "attendanceCallback_" +
-        Date.now() +
-        "_" +
-        Math.floor(
-          Math.random() *
-          100000
-        );
+    function cleanup() {
 
+      if (finished) {
+        return;
+      }
 
-      const script =
-        document.createElement(
-          "script"
-        );
+      finished = true;
 
+      if (window[callbackName]) {
+        delete window[callbackName];
+      }
 
-      let finished =
-        false;
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
 
+      clearTimeout(timeout);
+    }
 
-      const cleanup =
-        function() {
+    window[callbackName] =
+      function(response) {
 
-          if (
-            finished
-          ) {
-            return;
-          }
+        cleanup();
 
-          finished =
-            true;
+        if (response && response.success) {
 
+          resolve(response.data);
 
-          if (
-            window[
-              callbackName
-            ]
-          ) {
-
-            delete window[
-              callbackName
-            ];
-
-          }
-
-
-          if (
-            script.parentNode
-          ) {
-
-            script.parentNode
-              .removeChild(
-                script
-              );
-
-          }
-
-
-          clearTimeout(
-            timeout
-          );
-
-        };
-
-
-      window[
-        callbackName
-      ] =
-        function(
-          response
-        ) {
-
-          cleanup();
-
-
-          if (
-            response &&
-            response.success
-          ) {
-
-            resolve(
-              response.data
-            );
-
-          }
-
-          else {
-
-            reject(
-              new Error(
-                response &&
-                response.error
-                  ? response.error
-                  : "Server error."
-              )
-            );
-
-          }
-
-        };
-
-
-      const query =
-        new URLSearchParams();
-
-
-      Object.keys(
-        params
-      )
-      .forEach(
-        function(key) {
-
-          query.set(
-            key,
-            params[key]
-          );
-
-        }
-      );
-
-
-      query.set(
-        "api",
-        "1"
-      );
-
-
-      query.set(
-        "callback",
-        callbackName
-      );
-
-
-      query.set(
-        "_",
-        Date.now()
-          .toString()
-      );
-
-
-      script.src =
-        API_URL +
-        "?" +
-        query.toString();
-
-
-      script.onerror =
-        function() {
-
-          cleanup();
-
+        } else {
 
           reject(
             new Error(
-              "Unable to connect to attendance server."
+              response && response.error
+                ? response.error
+                : "Server error."
             )
           );
 
-        };
+        }
+
+      };
 
 
-      document.body
-        .appendChild(
-          script
+    const query =
+      new URLSearchParams();
+
+
+    Object.keys(params).forEach(function(key) {
+
+      query.set(
+        key,
+        params[key]
+      );
+
+    });
+
+
+    query.set("api", "1");
+
+    query.set(
+      "callback",
+      callbackName
+    );
+
+    query.set(
+      "_",
+      Date.now().toString()
+    );
+
+
+    script.src =
+      API_URL +
+      "?" +
+      query.toString();
+
+
+    script.onerror =
+      function() {
+
+        cleanup();
+
+        reject(
+          new Error(
+            "Unable to connect to attendance server."
+          )
         );
 
-
-      const timeout =
-        setTimeout(
-          function() {
-
-            cleanup();
+      };
 
 
-            reject(
-              new Error(
-                "Attendance server timeout. Please try again."
-              )
-            );
+    document.body.appendChild(script);
 
-          },
-          20000
-        );
 
-    }
-  );
+    timeout =
+      setTimeout(
+        function() {
+
+          cleanup();
+
+          reject(
+            new Error(
+              "Attendance server timeout. Please try again."
+            )
+          );
+
+        },
+        20000
+      );
+
+  });
 
 }
 
 
-// =====================================================
-// VERIFY
-// =====================================================
+/* =====================================================
+   VERIFY EMPLOYEE
+===================================================== */
 
 async function verifyEmployee() {
 
   const pin =
     document
-      .getElementById(
-        "pin"
-      )
+      .getElementById("pin")
       .value
       .trim();
 
@@ -647,7 +393,6 @@ async function verifyEmployee() {
     );
 
     return;
-
   }
 
 
@@ -658,14 +403,12 @@ async function verifyEmployee() {
 
 
   const button =
-    document
-      .getElementById(
-        "verifyButton"
-      );
+    document.getElementById(
+      "verifyButton"
+    );
 
 
-  button.disabled =
-    true;
+  button.disabled = true;
 
 
   try {
@@ -673,64 +416,44 @@ async function verifyEmployee() {
     const result =
       await callAPI({
 
-        action:
-          "verify",
+        action: "verify",
 
-        pin:
-          pin
+        pin: pin
 
       });
 
 
-    verified =
-      true;
+    verified = true;
 
-
-    verifiedPIN =
-      pin;
+    verifiedPIN = pin;
 
 
     document
-      .getElementById(
-        "loginSection"
-      )
+      .getElementById("loginSection")
       .classList
-      .add(
-        "hidden"
-      );
+      .add("hidden");
 
 
     document
-      .getElementById(
-        "employeeSection"
-      )
+      .getElementById("employeeSection")
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
 
     document
-      .getElementById(
-        "employeeName"
-      )
+      .getElementById("employeeName")
       .textContent =
-        "👤 " +
-        result.name;
+        "👤 " + result.name;
 
 
     document
-      .getElementById(
-        "weeklyOff"
-      )
+      .getElementById("weeklyOff")
       .textContent =
         "Weekly Off: " +
         result.weeklyOff;
 
 
-    updateStatus(
-      result.status
-    );
+    updateStatus(result.status);
 
 
     updateLocationStatus(
@@ -745,154 +468,153 @@ async function verifyEmployee() {
     );
 
 
-  }
-
-  catch (
-    error
-  ) {
+  } catch (error) {
 
     showMessage(
       error.message,
       "red"
     );
 
-  }
+  } finally {
 
-
-  finally {
-
-    button.disabled =
-      false;
+    button.disabled = false;
 
   }
 
 }
 
 
-// =====================================================
-// GET CURRENT LOCATION
-// =====================================================
+/* =====================================================
+   GET CURRENT LOCATION
+===================================================== */
 
 function getCurrentLocation() {
 
-  return new Promise(
-    function(
-      resolve,
-      reject
-    ) {
+  return new Promise(function(resolve, reject) {
+
+    if (!navigator.geolocation) {
+
+      reject(
+        new Error(
+          "Location is not supported on this device."
+        )
+      );
+
+      return;
+    }
 
 
-      if (
-        !navigator.geolocation
-      ) {
+    navigator.geolocation.getCurrentPosition(
 
-        reject(
-          new Error(
-            "Location is not supported on this device."
-          )
-        );
+      function(position) {
 
-        return;
+        if (
+          !position ||
+          !position.coords
+        ) {
+
+          reject(
+            new Error(
+              "Location data was not received."
+            )
+          );
+
+          return;
+        }
+
+
+        resolve(position);
+
+      },
+
+
+      function(error) {
+
+        if (
+          error &&
+          error.code ===
+          error.PERMISSION_DENIED
+        ) {
+
+          reject(
+            new Error(
+              "Location permission denied. Please allow location access and try again."
+            )
+          );
+
+        }
+
+        else if (
+          error &&
+          error.code ===
+          error.POSITION_UNAVAILABLE
+        ) {
+
+          reject(
+            new Error(
+              "Unable to detect your location. Please turn ON GPS/Location and try again."
+            )
+          );
+
+        }
+
+        else {
+
+          reject(
+            new Error(
+              "Location request timed out. Please try again."
+            )
+          );
+
+        }
+
+      },
+
+
+      {
+
+        enableHighAccuracy: true,
+
+        timeout: 20000,
+
+        maximumAge: 0
 
       }
 
+    );
 
-      navigator.geolocation
-        .getCurrentPosition(
-
-          function(
-            position
-          ) {
-
-            resolve(
-              position
-            );
-
-          },
-
-
-          function(
-            error
-          ) {
-
-
-            if (
-              error.code ===
-              error.PERMISSION_DENIED
-            ) {
-
-              reject(
-                new Error(
-                  "Location permission denied. Please allow location access."
-                )
-              );
-
-            }
-
-            else if (
-              error.code ===
-              error.POSITION_UNAVAILABLE
-            ) {
-
-              reject(
-                new Error(
-                  "Unable to detect your location. Please try again."
-                )
-              );
-
-            }
-
-            else {
-
-              reject(
-                new Error(
-                  "Location request timed out. Please try again."
-                )
-              );
-
-            }
-
-          },
-
-
-          {
-
-            enableHighAccuracy:
-              true,
-
-            timeout:
-              15000,
-
-            maximumAge:
-              0
-
-          }
-
-        );
-
-    }
-  );
+  });
 
 }
 
 
-// =====================================================
-// LOGIN / LOGOUT
-// =====================================================
+/* =====================================================
+   LOGIN / LOGOUT
+===================================================== */
 
-async function markAttendance(
-  action
-) {
-
+async function markAttendance(action) {
 
   if (
     !verified ||
     !verifiedPIN
   ) {
 
-    return;
+    showMessage(
+      "Please verify your PIN first.",
+      "red"
+    );
 
+    return;
   }
+
+
+  const button =
+    action === "Login"
+      ? document.getElementById("loginButton")
+      : document.getElementById("logoutButton");
+
+
+  button.disabled = true;
 
 
   showMessage(
@@ -907,75 +629,57 @@ async function markAttendance(
   );
 
 
-  const button =
-    action === "Login"
-      ? document
-          .getElementById(
-            "loginButton"
-          )
-      : document
-          .getElementById(
-            "logoutButton"
-          );
-
-
-  button.disabled =
-    true;
-
-
   try {
-
-
-    // =================================================
-    // GET GPS
-    // =================================================
 
     const position =
       await getCurrentLocation();
 
 
     const latitude =
-      position.coords.latitude;
+      Number(
+        position.coords.latitude
+      );
 
 
     const longitude =
-      position.coords.longitude;
+      Number(
+        position.coords.longitude
+      );
+
+
+    if (
+      !Number.isFinite(latitude) ||
+      !Number.isFinite(longitude)
+    ) {
+
+      throw new Error(
+        "Invalid GPS coordinates received."
+      );
+
+    }
 
 
     updateLocationStatus(
-      "📍 GPS location found. Checking company area...",
+      "📍 GPS found. Checking company area...",
       "#333"
     );
 
 
-    // =================================================
-    // SEND LOCATION TO SERVER
-    // =================================================
-
     const result =
       await callAPI({
 
-        action:
-          "attendance",
+        action: "attendance",
 
-        pin:
-          verifiedPIN,
+        pin: verifiedPIN,
 
-        attendanceAction:
-          action,
+        attendanceAction: action,
 
-        latitude:
-          latitude,
+        latitude: latitude,
 
-        longitude:
-          longitude
+        longitude: longitude
 
       });
 
-
-    // =================================================
-    // SUCCESS
-    // =================================================
 
     updateLocationStatus(
       "🟢 Location Verified - Company Area",
@@ -983,9 +687,7 @@ async function markAttendance(
     );
 
 
-    if (
-      action === "Login"
-    ) {
+    if (action === "Login") {
 
       showMessage(
         "✓ " +
@@ -994,10 +696,7 @@ async function markAttendance(
         "green"
       );
 
-
-      updateStatus(
-        "Login"
-      );
+      updateStatus("Login");
 
     }
 
@@ -1010,68 +709,55 @@ async function markAttendance(
         "green"
       );
 
-
-      updateStatus(
-        "Logout"
-      );
+      updateStatus("Logout");
 
     }
 
 
-  }
+  } catch (error) {
 
-
-  catch (
-    error
-  ) {
+    console.error(
+      "Attendance Error:",
+      error
+    );
 
 
     updateLocationStatus(
-      "🔴 Outside Company Area / Location Error",
+      "🔴 Location / Attendance Error",
       "red"
     );
 
 
     showMessage(
-      error.message,
+      error.message ||
+      "Something went wrong. Please try again.",
       "red"
     );
 
-  }
+  } finally {
 
-
-  finally {
-
-    button.disabled =
-      false;
+    button.disabled = false;
 
   }
 
 }
 
 
-// =====================================================
-// STATUS
-// =====================================================
+/* =====================================================
+   STATUS
+===================================================== */
 
-function updateStatus(
-  status
-) {
+function updateStatus(status) {
 
   const box =
-    document
-      .getElementById(
-        "currentStatus"
-      );
+    document.getElementById(
+      "currentStatus"
+    );
 
 
-  if (
-    status === "Login"
-  ) {
+  if (status === "Login") {
 
-    box.style.color =
-      "#16a34a";
-
+    box.style.color = "#16a34a";
 
     box.textContent =
       "🟢 Current Status: LOGIN";
@@ -1080,9 +766,7 @@ function updateStatus(
 
   else {
 
-    box.style.color =
-      "#dc2626";
-
+    box.style.color = "#dc2626";
 
     box.textContent =
       "🔴 Current Status: LOGOUT";
@@ -1092,9 +776,9 @@ function updateStatus(
 }
 
 
-// =====================================================
-// LOCATION STATUS
-// =====================================================
+/* =====================================================
+   LOCATION STATUS
+===================================================== */
 
 function updateLocationStatus(
   text,
@@ -1102,103 +786,72 @@ function updateLocationStatus(
 ) {
 
   const box =
-    document
-      .getElementById(
-        "locationStatus"
-      );
+    document.getElementById(
+      "locationStatus"
+    );
 
 
-  box.textContent =
-    text;
+  box.textContent = text;
 
-
-  box.style.color =
-    color;
+  box.style.color = color;
 
 }
 
 
-// =====================================================
-// EXIT
-// =====================================================
+/* =====================================================
+   EXIT
+===================================================== */
 
 function exitUser() {
 
-  verified =
-    false;
+  verified = false;
 
-
-  verifiedPIN =
-    "";
+  verifiedPIN = "";
 
 
   document
-    .getElementById(
-      "employeeSection"
-    )
+    .getElementById("employeeSection")
     .classList
-    .add(
-      "hidden"
-    );
+    .add("hidden");
 
 
   document
-    .getElementById(
-      "loginSection"
-    )
+    .getElementById("loginSection")
     .classList
-    .remove(
-      "hidden"
-    );
+    .remove("hidden");
 
 
   document
-    .getElementById(
-      "pin"
-    )
-    .value =
-    "";
+    .getElementById("pin")
+    .value = "";
 
 
   document
-    .getElementById(
-      "employeeName"
-    )
+    .getElementById("employeeName")
+    .textContent = "";
+
+
+  document
+    .getElementById("weeklyOff")
+    .textContent = "";
+
+
+  document
+    .getElementById("currentStatus")
     .textContent =
-    "";
+      "Current Status";
 
 
   document
-    .getElementById(
-      "weeklyOff"
-    )
+    .getElementById("locationStatus")
     .textContent =
-    "";
+      "📍 Location: Not Checked";
 
 
   document
-    .getElementById(
-      "currentStatus"
-    )
-    .textContent =
-    "Current Status";
-
-
-  document
-    .getElementById(
-      "locationStatus"
-    )
-    .textContent =
-    "📍 Location: Not Checked";
-
-
-  document
-    .getElementById(
-      "locationStatus"
-    )
+    .getElementById("locationStatus")
     .style
-    .color =
-    "#666";
+    .color = "#666";
 
 
   showMessage(
@@ -1209,9 +862,9 @@ function exitUser() {
 }
 
 
-// =====================================================
-// MESSAGE
-// =====================================================
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 function showMessage(
   text,
@@ -1219,10 +872,9 @@ function showMessage(
 ) {
 
   const message =
-    document
-      .getElementById(
-        "message"
-      );
+    document.getElementById(
+      "message"
+    );
 
 
   message.style.color =
@@ -1235,14 +887,12 @@ function showMessage(
 }
 
 
-// =====================================================
-// BUTTONS
-// =====================================================
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 document
-  .getElementById(
-    "verifyButton"
-  )
+  .getElementById("verifyButton")
   .addEventListener(
     "click",
     verifyEmployee
@@ -1250,41 +900,31 @@ document
 
 
 document
-  .getElementById(
-    "loginButton"
-  )
+  .getElementById("loginButton")
   .addEventListener(
     "click",
     function() {
 
-      markAttendance(
-        "Login"
-      );
+      markAttendance("Login");
 
     }
   );
 
 
 document
-  .getElementById(
-    "logoutButton"
-  )
+  .getElementById("logoutButton")
   .addEventListener(
     "click",
     function() {
 
-      markAttendance(
-        "Logout"
-      );
+      markAttendance("Logout");
 
     }
   );
 
 
 document
-  .getElementById(
-    "exitButton"
-  )
+  .getElementById("exitButton")
   .addEventListener(
     "click",
     exitUser
@@ -1292,17 +932,12 @@ document
 
 
 document
-  .getElementById(
-    "pin"
-  )
+  .getElementById("pin")
   .addEventListener(
     "keydown",
     function(event) {
 
-      if (
-        event.key ===
-        "Enter"
-      ) {
+      if (event.key === "Enter") {
 
         event.preventDefault();
 
@@ -1314,9 +949,9 @@ document
   );
 
 
-// =====================================================
-// PWA INSTALL
-// =====================================================
+/* =====================================================
+   PWA INSTALL
+===================================================== */
 
 window.addEventListener(
   "beforeinstallprompt",
@@ -1324,35 +959,25 @@ window.addEventListener(
 
     event.preventDefault();
 
-    deferredPrompt =
-      event;
+    deferredPrompt = event;
 
 
     document
-      .getElementById(
-        "installButton"
-      )
+      .getElementById("installButton")
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
   }
 );
 
 
 document
-  .getElementById(
-    "installButton"
-  )
+  .getElementById("installButton")
   .addEventListener(
     "click",
     async function() {
 
-
-      if (
-        !deferredPrompt
-      ) {
+      if (!deferredPrompt) {
 
         alert(
           "On iPhone: Safari → Share → Add to Home Screen."
@@ -1363,33 +988,25 @@ document
       }
 
 
-      deferredPrompt
-        .prompt();
+      deferredPrompt.prompt();
 
 
-      await deferredPrompt
-        .userChoice;
+      await deferredPrompt.userChoice;
 
 
-      deferredPrompt =
-        null;
+      deferredPrompt = null;
 
 
       document
-        .getElementById(
-          "installButton"
-        )
+        .getElementById("installButton")
         .classList
-        .add(
-          "hidden"
-        );
+        .add("hidden");
 
     }
   );
 
-
 </script>
 
 </body>
-
 </html>
+```
