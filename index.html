@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,16 +5,14 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width,
-        initial-scale=1.0,
-        maximum-scale=1.0,
-        user-scalable=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
 
-  <meta name="theme-color"
-        content="#2563eb">
+  <meta name="theme-color" content="#e91e63">
 
-  <title>Employee Attendance</title>
+  <title>Floward Employee Attendance</title>
 
   <style>
 
@@ -23,218 +20,630 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
+      width: 100%;
+      min-height: 100%;
       margin: 0;
-      padding: 20px;
-      min-height: 100vh;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
+    body {
       font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
         Arial,
-        Helvetica,
         sans-serif;
 
       background:
         linear-gradient(
-          135deg,
-          #eef2ff,
-          #f8fafc
+          145deg,
+          #fff7fa 0%,
+          #ffffff 45%,
+          #fdf2f8 100%
         );
 
+      color: #1f2937;
+
+      min-height: 100vh;
+
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
+      padding: 20px 14px;
     }
+
+
+    /* =================================================
+       MAIN CONTAINER
+    ================================================= */
 
     .container {
       width: 100%;
       max-width: 430px;
+      margin: auto;
     }
 
+
+    /* =================================================
+       CARD
+    ================================================= */
+
     .card {
-      background: white;
-      border-radius: 22px;
-      padding: 30px 25px;
+
+      width: 100%;
+
+      background: rgba(255,255,255,0.98);
+
+      border: 1px solid #fce7f3;
+
+      border-radius: 24px;
+
+      padding: 28px 22px;
 
       box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.10);
+        0 20px 55px rgba(190,24,93,0.10),
+        0 4px 15px rgba(0,0,0,0.04);
 
       text-align: center;
+
+      overflow: hidden;
+    }
+
+
+    /* =================================================
+       LOGO
+    ================================================= */
+
+    .logo-wrapper {
+
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
     }
 
     .logo {
-      width: 70px;
-      height: 70px;
 
-      margin: 0 auto 15px;
+      width: 68px;
+      height: 68px;
 
       border-radius: 50%;
 
-      background: #2563eb;
+      background:
+        linear-gradient(
+          135deg,
+          #e91e63,
+          #c2185b
+        );
+
       color: white;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      font-size: 30px;
-      font-weight: bold;
+      font-size: 29px;
+      font-weight: 700;
+
+      box-shadow:
+        0 10px 25px rgba(233,30,99,0.25);
     }
 
+
+    /* =================================================
+       HEADINGS
+    ================================================= */
+
     h1 {
+
       margin: 0;
-      color: #111827;
+
       font-size: 25px;
+
+      font-weight: 700;
+
+      color: #111827;
+
+      letter-spacing: -0.3px;
+    }
+
+    .brand {
+
+      margin-top: 5px;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #e91e63;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
     }
 
     .subtitle {
+
       margin-top: 8px;
+
       margin-bottom: 25px;
 
       color: #6b7280;
+
       font-size: 14px;
+
+      line-height: 1.5;
     }
 
+
+    /* =================================================
+       PIN INPUT
+    ================================================= */
+
     .input {
+
       width: 100%;
+
+      max-width: 100%;
 
       padding: 16px;
 
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
+      border:
 
-      font-size: 20px;
+        1px solid #e5e7eb;
+
+      border-radius: 14px;
+
+      background: #fff;
+
+      color: #111827;
+
+      font-size: 21px;
+
       text-align: center;
+
+      letter-spacing: 6px;
 
       outline: none;
 
-      letter-spacing: 5px;
+      transition: 0.2s;
+
+      -webkit-appearance: none;
+    }
+
+    .input::placeholder {
+
+      letter-spacing: 1px;
+
+      color: #9ca3af;
+
+      font-size: 16px;
     }
 
     .input:focus {
-      border-color: #2563eb;
+
+      border-color: #e91e63;
 
       box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,0.12);
+        0 0 0 4px
+        rgba(233,30,99,0.10);
     }
 
+
+    /* =================================================
+       BUTTONS
+    ================================================= */
+
     .button {
+
       width: 100%;
 
-      margin-top: 15px;
-      padding: 15px;
+      max-width: 100%;
+
+      margin-top: 14px;
+
+      padding: 16px;
 
       border: none;
-      border-radius: 12px;
 
-      background: #2563eb;
+      border-radius: 14px;
+
       color: white;
 
-      font-size: 17px;
-      font-weight: bold;
+      background:
+        linear-gradient(
+          135deg,
+          #e91e63,
+          #c2185b
+        );
+
+      font-size: 16px;
+
+      font-weight: 700;
 
       cursor: pointer;
+
+      box-shadow:
+        0 8px 18px
+        rgba(233,30,99,0.20);
+
+      transition:
+        transform 0.15s,
+        box-shadow 0.15s,
+        opacity 0.15s;
+
+      -webkit-appearance: none;
+
+      touch-action: manipulation;
+    }
+
+    .button:active {
+
+      transform: scale(0.98);
+    }
+
+    .button:hover {
+
+      box-shadow:
+        0 10px 22px
+        rgba(233,30,99,0.28);
     }
 
     .button:disabled {
-      background: #9ca3af;
+
+      opacity: 0.55;
+
       cursor: not-allowed;
+
+      transform: none;
     }
+
+
+    /* =================================================
+       LOGOUT BUTTON
+    ================================================= */
 
     .logout {
-      background: #dc2626;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dc2626,
+          #b91c1c
+        );
+
+      box-shadow:
+        0 8px 18px
+        rgba(220,38,38,0.18);
     }
 
+
+    /* =================================================
+       BACK BUTTON
+    ================================================= */
+
+    .back {
+
+      background: #ffffff;
+
+      color: #6b7280;
+
+      border: 1px solid #e5e7eb;
+
+      box-shadow: none;
+    }
+
+    .back:hover {
+
+      background: #fdf2f8;
+
+      color: #be185d;
+
+      box-shadow: none;
+    }
+
+
+    /* =================================================
+       PIN SECTION
+    ================================================= */
+
+    #pinSection {
+
+      display: block;
+    }
+
+
+    /* =================================================
+       EMPLOYEE SECTION
+    ================================================= */
+
     .employee {
+
       display: none;
     }
 
+
     .employee-name {
+
       font-size: 23px;
-      font-weight: bold;
+
+      font-weight: 700;
+
       color: #111827;
 
       margin-bottom: 5px;
     }
 
+
     .weekly-off {
+
       color: #6b7280;
+
       font-size: 14px;
 
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
+
+    /* =================================================
+       STATUS
+    ================================================= */
+
     .status {
+
+      padding: 15px;
+
+      border-radius: 14px;
+
+      margin-bottom: 17px;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      border: 1px solid transparent;
+    }
+
+
+    .status-login {
+
+      background: #ecfdf5;
+
+      color: #047857;
+
+      border-color: #a7f3d0;
+    }
+
+
+    .status-logout {
+
+      background: #f9fafb;
+
+      color: #4b5563;
+
+      border-color: #e5e7eb;
+    }
+
+
+    /* =================================================
+       LOCATION STATUS
+    ================================================= */
+
+    .location-box {
+
+      margin-top: 18px;
+
       padding: 14px;
+
+      border-radius: 14px;
+
+      background: #fff7fa;
+
+      border: 1px solid #fce7f3;
+
+      text-align: left;
+    }
+
+
+    .location-title {
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #be185d;
+
+      margin-bottom: 5px;
+    }
+
+
+    .location-info {
+
+      font-size: 12px;
+
+      color: #6b7280;
+
+      line-height: 1.5;
+
+      word-break: break-word;
+    }
+
+
+    /* =================================================
+       LOADING
+    ================================================= */
+
+    .loading {
+
+      display: none;
+
+      margin-top: 17px;
+
+      color: #be185d;
+
+      font-size: 14px;
+
+      font-weight: 600;
+    }
+
+
+    .spinner {
+
+      display: inline-block;
+
+      width: 16px;
+
+      height: 16px;
+
+      margin-right: 6px;
+
+      vertical-align: -3px;
+
+      border:
+
+        2px solid #fbcfe8;
+
+      border-top-color: #e91e63;
+
+      border-radius: 50%;
+
+      animation:
+        spin 0.8s linear infinite;
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    /* =================================================
+       MESSAGE
+    ================================================= */
+
+    .message {
+
+      display: none;
+
+      margin-top: 17px;
+
+      padding: 13px 14px;
 
       border-radius: 12px;
 
-      margin-bottom: 18px;
+      font-size: 13px;
 
-      font-size: 16px;
-      font-weight: bold;
+      line-height: 1.5;
+
+      font-weight: 600;
+
+      word-break: break-word;
     }
 
-    .status-login {
-      background: #dcfce7;
+
+    .error {
+
+      background: #fef2f2;
+
+      color: #991b1b;
+
+      border:
+        1px solid #fecaca;
+    }
+
+
+    .success {
+
+      background: #ecfdf5;
+
       color: #166534;
+
+      border:
+        1px solid #bbf7d0;
     }
 
-    .status-logout {
-      background: #f3f4f6;
-      color: #374151;
-    }
 
-    .message {
-      display: none;
+    /* =================================================
+       FOOTER
+    ================================================= */
 
-      margin-top: 18px;
-      padding: 13px;
+    .footer {
 
-      border-radius: 10px;
+      margin-top: 22px;
 
-      font-size: 14px;
+      font-size: 11px;
+
+      color: #9ca3af;
+
       line-height: 1.5;
     }
 
-    .error {
-      background: #fee2e2;
-      color: #991b1b;
+
+    .footer strong {
+
+      color: #e91e63;
     }
 
-    .success {
-      background: #dcfce7;
-      color: #166534;
+
+    /* =================================================
+       MOBILE
+    ================================================= */
+
+    @media (max-width: 480px) {
+
+      body {
+
+        padding:
+          12px;
+
+        align-items:
+          flex-start;
+      }
+
+      .container {
+
+        margin-top:
+          12px;
+
+      }
+
+      .card {
+
+        padding:
+          25px 18px;
+
+        border-radius:
+          20px;
+      }
+
+      h1 {
+
+        font-size:
+          23px;
+      }
+
+      .logo {
+
+        width:
+          62px;
+
+        height:
+          62px;
+
+        font-size:
+          26px;
+      }
+
     }
 
-    .location {
-      margin-top: 12px;
-
-      color: #6b7280;
-
-      font-size: 12px;
-    }
-
-    .loading {
-      display: none;
-
-      margin-top: 15px;
-
-      color: #2563eb;
-
-      font-size: 14px;
-    }
-
-    .back {
-      margin-top: 15px;
-
-      background: transparent;
-
-      color: #6b7280;
-
-      border: 1px solid #d1d5db;
-    }
 
   </style>
 
@@ -243,24 +652,44 @@
 
 <body>
 
+
 <div class="container">
+
 
   <div class="card">
 
-    <div class="logo">
-      ✓
+
+    <!-- =================================================
+         LOGO
+    ================================================= -->
+
+    <div class="logo-wrapper">
+
+      <div class="logo">
+        ✓
+      </div>
+
     </div>
+
 
     <h1>
       Employee Attendance
     </h1>
 
-    <div class="subtitle">
-      Enter your employee PIN
+
+    <div class="brand">
+      FLOWARD
     </div>
 
 
-    <!-- PIN -->
+    <div class="subtitle">
+      Secure employee attendance
+    </div>
+
+
+    <!-- =================================================
+         PIN SECTION
+    ================================================= -->
 
     <div id="pinSection">
 
@@ -270,9 +699,10 @@
         type="password"
         inputmode="numeric"
         autocomplete="off"
-        placeholder="PIN"
+        placeholder="Enter PIN"
         maxlength="20"
       >
+
 
       <button
         id="verifyButton"
@@ -286,22 +716,27 @@
     </div>
 
 
-    <!-- EMPLOYEE -->
+    <!-- =================================================
+         EMPLOYEE SECTION
+    ================================================= -->
 
     <div
       id="employeeSection"
       class="employee"
     >
 
+
       <div
         id="employeeName"
         class="employee-name"
       ></div>
 
+
       <div
         id="weeklyOff"
         class="weekly-off"
       ></div>
+
 
       <div
         id="status"
@@ -329,16 +764,51 @@
         Change Employee
       </button>
 
+
+      <!-- =================================================
+           LOCATION
+      ================================================= -->
+
+      <div class="location-box">
+
+        <div class="location-title">
+          📍 Location Verification
+        </div>
+
+        <div
+          id="locationInfo"
+          class="location-info"
+        >
+          Location will be checked when you Login or Logout.
+        </div>
+
+      </div>
+
+
     </div>
 
+
+    <!-- =================================================
+         LOADING
+    ================================================= -->
 
     <div
       id="loading"
       class="loading"
     >
-      Please wait...
+
+      <span class="spinner"></span>
+
+      <span id="loadingText">
+        Please wait...
+      </span>
+
     </div>
 
+
+    <!-- =================================================
+         MESSAGE
+    ================================================= -->
 
     <div
       id="message"
@@ -346,12 +816,17 @@
     ></div>
 
 
-    <div
-      id="locationInfo"
-      class="location"
-    ></div>
+    <div class="footer">
+
+      Attendance is allowed only within
+      <strong>200 meters</strong>
+      of the company location.
+
+    </div>
+
 
   </div>
+
 
 </div>
 
@@ -360,11 +835,11 @@
 
 
 // =====================================================
-// APPS SCRIPT API
+// YOUR CURRENT APPS SCRIPT API
 // =====================================================
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbyovrW3E9ZnEf_-qc95maAtL2EDPKCoIBpd986bpBR74pb-NKucz0wxOaTPljHhF3sX/exec";
+  "https://script.google.com/macros/s/AKfycbyaySk6Ti-5u5fu0P9IOqoLuTS_he4TpyDLudI2X0IZz4CTh4j4ywW3ywkWLxRvktux/exec";
 
 
 // =====================================================
@@ -405,12 +880,6 @@ function callAPI(params) {
         setTimeout(
           function() {
 
-            if (finished) {
-              return;
-            }
-
-            finished = true;
-
             cleanup();
 
             reject(
@@ -426,22 +895,35 @@ function callAPI(params) {
 
       function cleanup() {
 
+        if (finished) {
+          return;
+        }
+
+        finished = true;
+
+
         clearTimeout(timeout);
 
-        if (
-          window[callbackName]
-        ) {
+
+        try {
 
           delete window[callbackName];
 
         }
 
-        if (
-          script.parentNode
-        ) {
+        catch (e) {
 
-          script.parentNode
-            .removeChild(script);
+          window[callbackName] =
+            undefined;
+
+        }
+
+
+        if (script.parentNode) {
+
+          script.parentNode.removeChild(
+            script
+          );
 
         }
 
@@ -450,12 +932,6 @@ function callAPI(params) {
 
       window[callbackName] =
         function(response) {
-
-          if (finished) {
-            return;
-          }
-
-          finished = true;
 
           cleanup();
 
@@ -478,7 +954,7 @@ function callAPI(params) {
                 response &&
                 response.error
                   ? response.error
-                  : "Server error."
+                  : "Attendance server error."
               )
             );
 
@@ -531,12 +1007,6 @@ function callAPI(params) {
       script.onerror =
         function() {
 
-          if (finished) {
-            return;
-          }
-
-          finished = true;
-
           cleanup();
 
           reject(
@@ -548,8 +1018,9 @@ function callAPI(params) {
         };
 
 
-      document.body
-        .appendChild(script);
+      document.body.appendChild(
+        script
+      );
 
     }
   );
@@ -576,7 +1047,7 @@ async function verifyEmployee() {
   if (!pin) {
 
     showError(
-      "Please enter your PIN."
+      "Please enter your employee PIN."
     );
 
     return;
@@ -600,6 +1071,7 @@ async function verifyEmployee() {
 
 
   try {
+
 
     const result =
       await callAPI({
@@ -630,26 +1102,22 @@ async function verifyEmployee() {
       "Employee verified successfully."
     );
 
-  }
 
+  }
 
   catch(error) {
 
     showError(
-      error.message
+      getErrorMessage(error)
     );
 
   }
 
-
   finally {
 
-    button.disabled =
-      false;
+    button.disabled = false;
 
-    setLoading(
-      false
-    );
+    setLoading(false);
 
   }
 
@@ -663,6 +1131,7 @@ async function verifyEmployee() {
 function showEmployee(
   employee
 ) {
+
 
   document
     .getElementById(
@@ -685,6 +1154,7 @@ function showEmployee(
       "employeeName"
     )
     .textContent =
+      "👤 " +
       employee.name;
 
 
@@ -703,16 +1173,25 @@ function showEmployee(
     employee.status
   );
 
+
+  document
+    .getElementById(
+      "locationInfo"
+    )
+    .textContent =
+      "📍 Location will be verified before attendance is recorded.";
+
 }
 
 
 // =====================================================
-// STATUS
+// UPDATE STATUS
 // =====================================================
 
 function updateStatus(
   status
 ) {
+
 
   const statusElement =
     document.getElementById(
@@ -730,9 +1209,10 @@ function updateStatus(
     status === "Login"
   ) {
 
+
     statusElement
       .textContent =
-        "Currently Logged In";
+        "🟢 Currently Logged In";
 
 
     statusElement
@@ -742,7 +1222,7 @@ function updateStatus(
 
     button
       .textContent =
-        "Logout";
+        "🔴 Logout";
 
 
     button
@@ -753,9 +1233,10 @@ function updateStatus(
 
   else {
 
+
     statusElement
       .textContent =
-        "Currently Logged Out";
+        "⚪ Currently Logged Out";
 
 
     statusElement
@@ -765,7 +1246,7 @@ function updateStatus(
 
     button
       .textContent =
-        "Login";
+        "🟢 Login";
 
 
     button
@@ -778,10 +1259,11 @@ function updateStatus(
 
 
 // =====================================================
-// ATTENDANCE
+// MARK ATTENDANCE
 // =====================================================
 
 async function markAttendance() {
+
 
   if (
     !currentPIN ||
@@ -798,7 +1280,6 @@ async function markAttendance() {
 
 
   clearMessage();
-  clearLocation();
 
 
   const action =
@@ -813,13 +1294,17 @@ async function markAttendance() {
     );
 
 
-  button.disabled =
-    true;
+  button.disabled = true;
 
 
   setLoading(
     true,
-    "Getting your location..."
+    "Getting your GPS location..."
+  );
+
+
+  updateLocation(
+    "📍 Requesting GPS location..."
   );
 
 
@@ -827,12 +1312,12 @@ async function markAttendance() {
     !navigator.geolocation
   ) {
 
-    button.disabled =
-      false;
-
     setLoading(
       false
     );
+
+    button.disabled = false;
+
 
     showError(
       "Location services are not supported on this device."
@@ -844,6 +1329,7 @@ async function markAttendance() {
 
 
   try {
+
 
     const position =
       await getCurrentLocation();
@@ -861,14 +1347,11 @@ async function markAttendance() {
       position.coords.accuracy;
 
 
-    document
-      .getElementById(
-        "locationInfo"
-      )
-      .textContent =
-        "GPS accuracy: approximately " +
-        Math.round(accuracy) +
-        " meters";
+    updateLocation(
+      "📍 GPS found. Accuracy: approximately " +
+      Math.round(accuracy) +
+      " meters. Checking company area..."
+    );
 
 
     setLoading(
@@ -907,7 +1390,15 @@ async function markAttendance() {
     );
 
 
+    updateLocation(
+      "🟢 Location verified. Distance from company: " +
+      result.distance +
+      " meters."
+    );
+
+
     showSuccess(
+
       result.name +
       " " +
       (
@@ -916,39 +1407,31 @@ async function markAttendance() {
           : "logged out"
       ) +
       " successfully."
+
     );
 
 
-    document
-      .getElementById(
-        "locationInfo"
-      )
-      .textContent =
-        "Distance from company: " +
-        result.distance +
-        " meters";
-
-
   }
-
 
   catch(error) {
 
+
+    updateLocation(
+      "🔴 Location verification failed."
+    );
+
+
     showError(
-      error.message
+      getErrorMessage(error)
     );
 
   }
 
-
   finally {
 
-    button.disabled =
-      false;
+    setLoading(false);
 
-    setLoading(
-      false
-    );
+    button.disabled = false;
 
   }
 
@@ -956,7 +1439,7 @@ async function markAttendance() {
 
 
 // =====================================================
-// GPS
+// GET CURRENT LOCATION
 // =====================================================
 
 function getCurrentLocation() {
@@ -964,71 +1447,77 @@ function getCurrentLocation() {
   return new Promise(
     function(resolve, reject) {
 
-      navigator.geolocation
-        .getCurrentPosition(
 
-          function(position) {
+      navigator.geolocation.getCurrentPosition(
 
-            resolve(
-              position
-            );
+        function(position) {
 
-          },
+          resolve(
+            position
+          );
 
-          function(error) {
+        },
 
-            if (
-              error.code ===
-              error.PERMISSION_DENIED
-            ) {
 
-              reject(
-                new Error(
-                  "Location permission denied. Please allow location access."
-                )
-              );
+        function(error) {
 
-            }
 
-            else if (
-              error.code ===
-              error.POSITION_UNAVAILABLE
-            ) {
+          let message =
+            "Unable to get your location.";
 
-              reject(
-                new Error(
-                  "Unable to detect your location. Please turn on GPS and try again."
-                )
-              );
 
-            }
+          if (
+            error.code ===
+            error.PERMISSION_DENIED
+          ) {
 
-            else {
-
-              reject(
-                new Error(
-                  "Location request timed out. Please try again."
-                )
-              );
-
-            }
-
-          },
-
-          {
-
-            enableHighAccuracy:
-              true,
-
-            timeout:
-              20000,
-
-            maximumAge:
-              0
+            message =
+              "Location permission was denied. Please allow location access and try again.";
 
           }
 
-        );
+          else if (
+            error.code ===
+            error.POSITION_UNAVAILABLE
+          ) {
+
+            message =
+              "Your location is unavailable. Please turn on GPS and try again.";
+
+          }
+
+          else if (
+            error.code ===
+            error.TIMEOUT
+          ) {
+
+            message =
+              "Location request timed out. Please try again.";
+
+          }
+
+
+          reject(
+            new Error(message)
+          );
+
+        },
+
+
+        {
+
+          enableHighAccuracy:
+            true,
+
+          timeout:
+            15000,
+
+          maximumAge:
+            0
+
+        }
+
+      );
 
     }
   );
@@ -1037,16 +1526,15 @@ function getCurrentLocation() {
 
 
 // =====================================================
-// RESET
+// RESET PAGE
 // =====================================================
 
 function resetPage() {
 
-  currentPIN =
-    "";
 
-  currentEmployee =
-    null;
+  currentPIN = "";
+
+  currentEmployee = null;
 
 
   document
@@ -1073,15 +1561,50 @@ function resetPage() {
       "block";
 
 
-  clearMessage();
-  clearLocation();
+  document
+    .getElementById(
+      "locationInfo"
+    )
+    .textContent =
+      "";
 
+
+  clearMessage();
+
+
+  setLoading(false);
+
+
+  setTimeout(
+    function() {
+
+      document
+        .getElementById(
+          "pin"
+        )
+        .focus();
+
+    },
+    100
+  );
+
+}
+
+
+// =====================================================
+// LOCATION MESSAGE
+// =====================================================
+
+function updateLocation(
+  text
+) {
 
   document
     .getElementById(
-      "pin"
+      "locationInfo"
     )
-    .focus();
+    .textContent =
+      text;
 
 }
 
@@ -1095,9 +1618,16 @@ function setLoading(
   text
 ) {
 
+
   const loading =
     document.getElementById(
       "loading"
+    );
+
+
+  const loadingText =
+    document.getElementById(
+      "loadingText"
     );
 
 
@@ -1106,7 +1636,8 @@ function setLoading(
     loading.style.display =
       "block";
 
-    loading.textContent =
+
+    loadingText.textContent =
       text ||
       "Please wait...";
 
@@ -1123,12 +1654,13 @@ function setLoading(
 
 
 // =====================================================
-// SUCCESS
+// SUCCESS MESSAGE
 // =====================================================
 
 function showSuccess(
   message
 ) {
+
 
   const element =
     document.getElementById(
@@ -1137,6 +1669,7 @@ function showSuccess(
 
 
   element.textContent =
+    "✓ " +
     message;
 
 
@@ -1151,12 +1684,13 @@ function showSuccess(
 
 
 // =====================================================
-// ERROR
+// ERROR MESSAGE
 // =====================================================
 
 function showError(
   message
 ) {
+
 
   const element =
     document.getElementById(
@@ -1184,6 +1718,7 @@ function showError(
 
 function clearMessage() {
 
+
   const element =
     document.getElementById(
       "message"
@@ -1201,17 +1736,28 @@ function clearMessage() {
 
 
 // =====================================================
-// CLEAR LOCATION
+// ERROR HANDLER
 // =====================================================
 
-function clearLocation() {
+function getErrorMessage(
+  error
+) {
 
-  document
-    .getElementById(
-      "locationInfo"
-    )
-    .textContent =
-      "";
+
+  if (
+    error &&
+    error.message
+  ) {
+
+    return error.message;
+
+  }
+
+
+  return (
+    "Unable to connect to attendance server. " +
+    "Please try again."
+  );
 
 }
 
@@ -1229,8 +1775,7 @@ document
     function(event) {
 
       if (
-        event.key ===
-        "Enter"
+        event.key === "Enter"
       ) {
 
         event.preventDefault();
@@ -1242,9 +1787,10 @@ document
     }
   );
 
+
 </script>
+
 
 </body>
 
 </html>
-```
