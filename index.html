@@ -19,6 +19,7 @@
 
 <title>Employee Attendance</title>
 
+
 <style>
 
 * {
@@ -27,142 +28,254 @@
 
 body {
 
-  font-family: Arial, sans-serif;
+  font-family:
+    Arial,
+    sans-serif;
 
-  background: #f3f4f6;
+  background:
+    #f3f4f6;
 
-  text-align: center;
+  text-align:
+    center;
 
-  padding: 30px 15px;
+  padding:
+    30px 15px;
 
-  margin: 0;
+  margin:
+    0;
 
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust:
+    100%;
 }
+
 
 .box {
 
-  max-width: 420px;
+  max-width:
+    420px;
 
-  margin: auto;
+  margin:
+    auto;
 
-  background: white;
+  background:
+    white;
 
-  padding: 30px 20px;
+  padding:
+    30px 20px;
 
-  border-radius: 18px;
+  border-radius:
+    18px;
 
   box-shadow:
-    0 4px 15px rgba(0,0,0,.1);
+    0 4px 15px
+    rgba(0,0,0,.1);
+
 }
 
+
 h1 {
-  margin-bottom: 25px;
+
+  margin-bottom:
+    25px;
+
 }
+
 
 input {
 
-  width: 100%;
+  width:
+    100%;
 
-  padding: 15px;
+  padding:
+    15px;
 
-  font-size: 20px;
+  font-size:
+    20px;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
 
-  border: 1px solid #ccc;
+  border:
+    1px solid #ccc;
 
-  margin-bottom: 15px;
+  margin-bottom:
+    15px;
 
-  text-align: center;
+  text-align:
+    center;
 
-  letter-spacing: 5px;
+  letter-spacing:
+    5px;
 
-  -webkit-appearance: none;
+  -webkit-appearance:
+    none;
+
 }
+
 
 button {
 
-  width: 100%;
+  width:
+    100%;
 
-  padding: 17px;
+  padding:
+    17px;
 
-  margin: 8px 0;
+  margin:
+    8px 0;
 
-  border: none;
+  border:
+    none;
 
-  border-radius: 10px;
+  border-radius:
+    10px;
 
-  color: white;
+  color:
+    white;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  font-weight: bold;
+  font-weight:
+    bold;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 
-  -webkit-appearance: none;
+  -webkit-appearance:
+    none;
 
-  touch-action: manipulation;
+  touch-action:
+    manipulation;
+
 }
+
+
+button:disabled {
+
+  opacity:
+    .6;
+
+  cursor:
+    not-allowed;
+
+}
+
 
 .verify {
-  background: #2563eb;
+
+  background:
+    #2563eb;
+
 }
+
 
 .login {
-  background: #16a34a;
+
+  background:
+    #16a34a;
+
 }
+
 
 .logout {
-  background: #dc2626;
+
+  background:
+    #dc2626;
+
 }
+
 
 .exit {
-  background: #6b7280;
+
+  background:
+    #6b7280;
+
 }
+
 
 .install {
-  background: #111827;
+
+  background:
+    #111827;
+
 }
 
+
 .hidden {
-  display: none !important;
+
+  display:
+    none !important;
+
 }
+
 
 #employeeName {
 
-  font-size: 22px;
+  font-size:
+    22px;
 
-  font-weight: bold;
+  font-weight:
+    bold;
 
-  margin: 15px 0 5px;
+  margin:
+    15px 0 5px;
+
 }
+
 
 #weeklyOff {
 
-  color: #666;
+  color:
+    #666;
 
-  margin-bottom: 15px;
+  margin-bottom:
+    15px;
+
 }
+
 
 #currentStatus {
 
-  margin: 15px 0;
+  margin:
+    15px 0;
 
-  font-size: 18px;
+  font-size:
+    18px;
 
-  font-weight: bold;
+  font-weight:
+    bold;
+
 }
+
+
+#locationStatus {
+
+  margin:
+    10px 0;
+
+  font-size:
+    16px;
+
+  font-weight:
+    bold;
+
+}
+
 
 #message {
 
-  margin-top: 20px;
+  margin-top:
+    20px;
 
-  font-weight: bold;
+  font-weight:
+    bold;
 
-  min-height: 24px;
+  min-height:
+    24px;
+
 }
+
 
 </style>
 
@@ -171,28 +284,36 @@ button {
 
 <body>
 
+
 <div class="box">
+
 
 <h1>
 Employee Attendance
 </h1>
 
 
+<!-- =================================================
+     LOGIN SECTION
+================================================= -->
+
 <div id="loginSection">
 
+
 <input
-type="password"
-id="pin"
-placeholder="Enter PIN"
-inputmode="numeric"
-pattern="[0-9]*"
-maxlength="6"
-autocomplete="off">
+  type="password"
+  id="pin"
+  placeholder="Enter PIN"
+  inputmode="numeric"
+  pattern="[0-9]*"
+  maxlength="6"
+  autocomplete="off">
+
 
 <button
-type="button"
-class="verify"
-id="verifyButton">
+  type="button"
+  class="verify"
+  id="verifyButton">
 
 🔐 VERIFY PIN
 
@@ -200,34 +321,47 @@ id="verifyButton">
 
 
 <button
-type="button"
-id="installButton"
-class="install hidden">
+  type="button"
+  id="installButton"
+  class="install hidden">
 
 📲 INSTALL APP
 
 </button>
 
+
 </div>
 
 
+<!-- =================================================
+     EMPLOYEE SECTION
+================================================= -->
+
 <div
-id="employeeSection"
-class="hidden">
+  id="employeeSection"
+  class="hidden">
+
 
 <div id="employeeName"></div>
 
+
 <div id="weeklyOff"></div>
+
 
 <div id="currentStatus">
 Current Status
 </div>
 
 
+<div id="locationStatus">
+📍 Location: Not Checked
+</div>
+
+
 <button
-type="button"
-class="login"
-id="loginButton">
+  type="button"
+  class="login"
+  id="loginButton">
 
 🟢 LOGIN
 
@@ -235,9 +369,9 @@ id="loginButton">
 
 
 <button
-type="button"
-class="logout"
-id="logoutButton">
+  type="button"
+  class="logout"
+  id="logoutButton">
 
 🔴 LOGOUT
 
@@ -245,53 +379,68 @@ id="logoutButton">
 
 
 <button
-type="button"
-class="exit"
-id="exitButton">
+  type="button"
+  class="exit"
+  id="exitButton">
 
 🔒 EXIT
 
 </button>
+
 
 </div>
 
 
 <div id="message"></div>
 
+
 </div>
 
 
 <script>
 
-/* =====================================================
-   API URL
-===================================================== */
+
+// =====================================================
+// API URL
+// =====================================================
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwbUQQ3Ewz3RJHnET6c7YOPVBiWxX-dXJsm0yt58pJGgCp8shePNS0MEQ1AUmopqWzG/exec";
 
-let verified = false;
 
-let verifiedPIN = "";
-
-let deferredPrompt = null;
+let verified =
+  false;
 
 
-/* =====================================================
-   JSONP API
-===================================================== */
+let verifiedPIN =
+  "";
 
-function callAPI(params) {
+
+let deferredPrompt =
+  null;
+
+
+// =====================================================
+// JSONP API
+// =====================================================
+
+function callAPI(
+  params
+) {
 
   return new Promise(
-    function(resolve, reject) {
+    function(
+      resolve,
+      reject
+    ) {
 
       const callbackName =
         "attendanceCallback_" +
         Date.now() +
         "_" +
         Math.floor(
-          Math.random() * 100000
+          Math.random() *
+          100000
         );
 
 
@@ -301,20 +450,27 @@ function callAPI(params) {
         );
 
 
-      let finished = false;
+      let finished =
+        false;
 
 
       const cleanup =
         function() {
 
-          if (finished) {
+          if (
+            finished
+          ) {
             return;
           }
 
-          finished = true;
+          finished =
+            true;
+
 
           if (
-            window[callbackName]
+            window[
+              callbackName
+            ]
           ) {
 
             delete window[
@@ -322,6 +478,7 @@ function callAPI(params) {
             ];
 
           }
+
 
           if (
             script.parentNode
@@ -334,6 +491,7 @@ function callAPI(params) {
 
           }
 
+
           clearTimeout(
             timeout
           );
@@ -341,10 +499,15 @@ function callAPI(params) {
         };
 
 
-      window[callbackName] =
-        function(response) {
+      window[
+        callbackName
+      ] =
+        function(
+          response
+        ) {
 
           cleanup();
+
 
           if (
             response &&
@@ -355,7 +518,9 @@ function callAPI(params) {
               response.data
             );
 
-          } else {
+          }
+
+          else {
 
             reject(
               new Error(
@@ -375,17 +540,19 @@ function callAPI(params) {
         new URLSearchParams();
 
 
-      Object.keys(params)
-        .forEach(
-          function(key) {
+      Object.keys(
+        params
+      )
+      .forEach(
+        function(key) {
 
-            query.set(
-              key,
-              params[key]
-            );
+          query.set(
+            key,
+            params[key]
+          );
 
-          }
-        );
+        }
+      );
 
 
       query.set(
@@ -418,6 +585,7 @@ function callAPI(params) {
 
           cleanup();
 
+
           reject(
             new Error(
               "Unable to connect to attendance server."
@@ -439,6 +607,7 @@ function callAPI(params) {
 
             cleanup();
 
+
             reject(
               new Error(
                 "Attendance server timeout. Please try again."
@@ -451,12 +620,13 @@ function callAPI(params) {
 
     }
   );
+
 }
 
 
-/* =====================================================
-   VERIFY
-===================================================== */
+// =====================================================
+// VERIFY
+// =====================================================
 
 async function verifyEmployee() {
 
@@ -477,6 +647,7 @@ async function verifyEmployee() {
     );
 
     return;
+
   }
 
 
@@ -493,7 +664,8 @@ async function verifyEmployee() {
       );
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
 
 
   try {
@@ -510,16 +682,20 @@ async function verifyEmployee() {
       });
 
 
-    verified = true;
+    verified =
+      true;
 
-    verifiedPIN = pin;
+
+    verifiedPIN =
+      pin;
 
 
     document
       .getElementById(
         "loginSection"
       )
-      .classList.add(
+      .classList
+      .add(
         "hidden"
       );
 
@@ -528,7 +704,8 @@ async function verifyEmployee() {
       .getElementById(
         "employeeSection"
       )
-      .classList.remove(
+      .classList
+      .remove(
         "hidden"
       );
 
@@ -538,8 +715,8 @@ async function verifyEmployee() {
         "employeeName"
       )
       .textContent =
-      "👤 " +
-      result.name;
+        "👤 " +
+        result.name;
 
 
     document
@@ -547,12 +724,18 @@ async function verifyEmployee() {
         "weeklyOff"
       )
       .textContent =
-      "Weekly Off: " +
-      result.weeklyOff;
+        "Weekly Off: " +
+        result.weeklyOff;
 
 
     updateStatus(
       result.status
+    );
+
+
+    updateLocationStatus(
+      "📍 Location: Ready to check",
+      "#666"
     );
 
 
@@ -562,29 +745,145 @@ async function verifyEmployee() {
     );
 
 
-  } catch (error) {
+  }
+
+  catch (
+    error
+  ) {
 
     showMessage(
       error.message,
       "red"
     );
 
-  } finally {
+  }
 
-    button.disabled = false;
+
+  finally {
+
+    button.disabled =
+      false;
 
   }
 
 }
 
 
-/* =====================================================
-   LOGIN / LOGOUT
-===================================================== */
+// =====================================================
+// GET CURRENT LOCATION
+// =====================================================
+
+function getCurrentLocation() {
+
+  return new Promise(
+    function(
+      resolve,
+      reject
+    ) {
+
+
+      if (
+        !navigator.geolocation
+      ) {
+
+        reject(
+          new Error(
+            "Location is not supported on this device."
+          )
+        );
+
+        return;
+
+      }
+
+
+      navigator.geolocation
+        .getCurrentPosition(
+
+          function(
+            position
+          ) {
+
+            resolve(
+              position
+            );
+
+          },
+
+
+          function(
+            error
+          ) {
+
+
+            if (
+              error.code ===
+              error.PERMISSION_DENIED
+            ) {
+
+              reject(
+                new Error(
+                  "Location permission denied. Please allow location access."
+                )
+              );
+
+            }
+
+            else if (
+              error.code ===
+              error.POSITION_UNAVAILABLE
+            ) {
+
+              reject(
+                new Error(
+                  "Unable to detect your location. Please try again."
+                )
+              );
+
+            }
+
+            else {
+
+              reject(
+                new Error(
+                  "Location request timed out. Please try again."
+                )
+              );
+
+            }
+
+          },
+
+
+          {
+
+            enableHighAccuracy:
+              true,
+
+            timeout:
+              15000,
+
+            maximumAge:
+              0
+
+          }
+
+        );
+
+    }
+  );
+
+}
+
+
+// =====================================================
+// LOGIN / LOGOUT
+// =====================================================
 
 async function markAttendance(
   action
 ) {
+
 
   if (
     !verified ||
@@ -597,25 +896,61 @@ async function markAttendance(
 
 
   showMessage(
-    "Saving...",
+    "📍 Checking your location...",
+    "#333"
+  );
+
+
+  updateLocationStatus(
+    "📍 Checking GPS location...",
     "#333"
   );
 
 
   const button =
     action === "Login"
-      ? document.getElementById(
-          "loginButton"
-        )
-      : document.getElementById(
-          "logoutButton"
-        );
+      ? document
+          .getElementById(
+            "loginButton"
+          )
+      : document
+          .getElementById(
+            "logoutButton"
+          );
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
 
 
   try {
+
+
+    // =================================================
+    // GET GPS
+    // =================================================
+
+    const position =
+      await getCurrentLocation();
+
+
+    const latitude =
+      position.coords.latitude;
+
+
+    const longitude =
+      position.coords.longitude;
+
+
+    updateLocationStatus(
+      "📍 GPS location found. Checking company area...",
+      "#333"
+    );
+
+
+    // =================================================
+    // SEND LOCATION TO SERVER
+    // =================================================
 
     const result =
       await callAPI({
@@ -627,9 +962,25 @@ async function markAttendance(
           verifiedPIN,
 
         attendanceAction:
-          action
+          action,
+
+        latitude:
+          latitude,
+
+        longitude:
+          longitude
 
       });
+
+
+    // =================================================
+    // SUCCESS
+    // =================================================
+
+    updateLocationStatus(
+      "🟢 Location Verified - Company Area",
+      "green"
+    );
 
 
     if (
@@ -643,11 +994,14 @@ async function markAttendance(
         "green"
       );
 
+
       updateStatus(
         "Login"
       );
 
-    } else {
+    }
+
+    else {
 
       showMessage(
         "✓ " +
@@ -656,6 +1010,7 @@ async function markAttendance(
         "green"
       );
 
+
       updateStatus(
         "Logout"
       );
@@ -663,34 +1018,51 @@ async function markAttendance(
     }
 
 
-  } catch (error) {
+  }
+
+
+  catch (
+    error
+  ) {
+
+
+    updateLocationStatus(
+      "🔴 Outside Company Area / Location Error",
+      "red"
+    );
+
 
     showMessage(
       error.message,
       "red"
     );
 
-  } finally {
+  }
 
-    button.disabled = false;
+
+  finally {
+
+    button.disabled =
+      false;
 
   }
 
 }
 
 
-/* =====================================================
-   STATUS
-===================================================== */
+// =====================================================
+// STATUS
+// =====================================================
 
 function updateStatus(
   status
 ) {
 
   const box =
-    document.getElementById(
-      "currentStatus"
-    );
+    document
+      .getElementById(
+        "currentStatus"
+      );
 
 
   if (
@@ -700,13 +1072,17 @@ function updateStatus(
     box.style.color =
       "#16a34a";
 
+
     box.textContent =
       "🟢 Current Status: LOGIN";
 
-  } else {
+  }
+
+  else {
 
     box.style.color =
       "#dc2626";
+
 
     box.textContent =
       "🔴 Current Status: LOGOUT";
@@ -716,22 +1092,52 @@ function updateStatus(
 }
 
 
-/* =====================================================
-   EXIT
-===================================================== */
+// =====================================================
+// LOCATION STATUS
+// =====================================================
+
+function updateLocationStatus(
+  text,
+  color
+) {
+
+  const box =
+    document
+      .getElementById(
+        "locationStatus"
+      );
+
+
+  box.textContent =
+    text;
+
+
+  box.style.color =
+    color;
+
+}
+
+
+// =====================================================
+// EXIT
+// =====================================================
 
 function exitUser() {
 
-  verified = false;
+  verified =
+    false;
 
-  verifiedPIN = "";
+
+  verifiedPIN =
+    "";
 
 
   document
     .getElementById(
       "employeeSection"
     )
-    .classList.add(
+    .classList
+    .add(
       "hidden"
     );
 
@@ -740,7 +1146,8 @@ function exitUser() {
     .getElementById(
       "loginSection"
     )
-    .classList.remove(
+    .classList
+    .remove(
       "hidden"
     );
 
@@ -749,21 +1156,24 @@ function exitUser() {
     .getElementById(
       "pin"
     )
-    .value = "";
+    .value =
+    "";
 
 
   document
     .getElementById(
       "employeeName"
     )
-    .textContent = "";
+    .textContent =
+    "";
 
 
   document
     .getElementById(
       "weeklyOff"
     )
-    .textContent = "";
+    .textContent =
+    "";
 
 
   document
@@ -774,6 +1184,23 @@ function exitUser() {
     "Current Status";
 
 
+  document
+    .getElementById(
+      "locationStatus"
+    )
+    .textContent =
+    "📍 Location: Not Checked";
+
+
+  document
+    .getElementById(
+      "locationStatus"
+    )
+    .style
+    .color =
+    "#666";
+
+
   showMessage(
     "",
     "#333"
@@ -782,9 +1209,9 @@ function exitUser() {
 }
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
+// =====================================================
+// MESSAGE
+// =====================================================
 
 function showMessage(
   text,
@@ -792,12 +1219,15 @@ function showMessage(
 ) {
 
   const message =
-    document.getElementById(
-      "message"
-    );
+    document
+      .getElementById(
+        "message"
+      );
+
 
   message.style.color =
     color;
+
 
   message.textContent =
     text;
@@ -805,9 +1235,9 @@ function showMessage(
 }
 
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+// =====================================================
+// BUTTONS
+// =====================================================
 
 document
   .getElementById(
@@ -870,7 +1300,8 @@ document
     function(event) {
 
       if (
-        event.key === "Enter"
+        event.key ===
+        "Enter"
       ) {
 
         event.preventDefault();
@@ -883,9 +1314,9 @@ document
   );
 
 
-/* =====================================================
-   PWA INSTALL
-===================================================== */
+// =====================================================
+// PWA INSTALL
+// =====================================================
 
 window.addEventListener(
   "beforeinstallprompt",
@@ -896,11 +1327,13 @@ window.addEventListener(
     deferredPrompt =
       event;
 
+
     document
       .getElementById(
         "installButton"
       )
-      .classList.remove(
+      .classList
+      .remove(
         "hidden"
       );
 
@@ -916,6 +1349,7 @@ document
     "click",
     async function() {
 
+
       if (
         !deferredPrompt
       ) {
@@ -925,25 +1359,34 @@ document
         );
 
         return;
+
       }
 
 
-      deferredPrompt.prompt();
+      deferredPrompt
+        .prompt();
 
-      await deferredPrompt.userChoice;
 
-      deferredPrompt = null;
+      await deferredPrompt
+        .userChoice;
+
+
+      deferredPrompt =
+        null;
+
 
       document
         .getElementById(
           "installButton"
         )
-        .classList.add(
+        .classList
+        .add(
           "hidden"
         );
 
     }
   );
+
 
 </script>
 
